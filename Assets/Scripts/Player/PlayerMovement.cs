@@ -1,13 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Run Speed")]
     public CharacterController controller;
-
     public float speed = 12f;
-    public float gravity = -9.81f * 2;
-    public float jumpHeight = 3f;
 
+    [Header("Gravity")]
+    public float gravity = -9.81f * 2;
+
+    [Header("Jump Activity")]
+    public float jumpHeight = 3f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
