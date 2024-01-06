@@ -13,16 +13,19 @@ public class MouseMovement : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitive * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitive * Time.deltaTime;
+        if (InventorySystem.Instance.isOpen == false)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitive * Time.deltaTime;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitive * Time.deltaTime;
 
-        //Control rotation around x axis (Look up and down)
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            //Control rotation around x axis (Look up and down)
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //Control rotation around y axis (Look up and down)
-        yRotation += mouseX;
+            //Control rotation around y axis (Look up and down)
+            yRotation += mouseX;
 
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+            transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        }
     }
 }
