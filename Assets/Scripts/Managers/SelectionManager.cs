@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -75,5 +76,21 @@ public class SelectionManager : MonoBehaviour
             centerDotImage.gameObject.SetActive(true);
             handIcon.gameObject.SetActive(false);
         }
+    }
+
+    public void DisableSelection()
+    {
+        handIcon.enabled = false;
+        centerDotImage.enabled = false;
+        interaction_info_UI.SetActive(false);
+
+        selectedObject = null;
+    }
+
+    public void EnableSelection()
+    {
+        handIcon.enabled = true;
+        centerDotImage.enabled = true;
+        interaction_info_UI.SetActive(true);
     }
 }

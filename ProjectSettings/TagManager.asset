@@ -10,6 +10,7 @@ TagManager:
   - Tree
   - ItemSlot
   - PickAble
+  - QuickSlot
   layers:
   - Default
   - TransparentFX
