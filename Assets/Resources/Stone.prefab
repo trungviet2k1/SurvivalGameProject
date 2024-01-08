@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6247551995037457649}
   - component: {fileID: 8519362066656397132}
   m_Layer: 5
-  m_Name: item_ava
+  m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d659f7396cd57754eba78763cf986c51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6343bdcffd9686644897841340c00ebf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd58d7febd0ac5c49a078ecf86db7c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!225 &8519362066656397132
 CanvasGroup:
   m_ObjectHideFlags: 0

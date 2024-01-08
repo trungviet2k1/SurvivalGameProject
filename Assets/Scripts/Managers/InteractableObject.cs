@@ -12,13 +12,19 @@ public class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        if (!gameObject.CompareTag("Animal") && !gameObject.CompareTag("Plane")
-            && !gameObject.CompareTag("BigStone") && SelectionManager.Instance.onTarget)
+        if (!gameObject.CompareTag("Animal") && !gameObject.CompareTag("Plane") && !gameObject.CompareTag("BigStone"))
         {
-            if (Input.GetKeyDown(KeyCode.F) && playerInRange)
+            if (Input.GetKeyDown(KeyCode.F) && playerInRange && SelectionManager.Instance.onTarget == true)
             {
-                Debug.Log("Item added to inventory");
-                Destroy(gameObject);
+                if (!InventorySystem.Instance.CheckIfFull())
+                {
+                    InventorySystem.Instance.AddToInventory(ItemName);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Inventory is full");
+                }
             }
         }
     }
