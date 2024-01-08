@@ -51,14 +51,16 @@ public class CraftingSystem : MonoBehaviour
         {
             craftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             isOpen = true;
         }
         else if (Input.GetKeyDown(KeyCode.B) && isOpen)
         {
             craftingScreenUI.SetActive(false);
-            if (!InventorySystem.instance.isOpen)
+            if (!InventorySystem.Instance.isOpen)
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             isOpen = false;
         }
@@ -66,16 +68,16 @@ public class CraftingSystem : MonoBehaviour
 
     void CraftAnyItem(Blueprint blueprintToCraft)
     {
-        InventorySystem.instance.AddToInventory(blueprintToCraft.itemName);
+        InventorySystem.Instance.AddToInventory(blueprintToCraft.itemName);
 
         if (blueprintToCraft.numOfRequirements == 1)
         {
-            InventorySystem.instance.RemoveItem(blueprintToCraft.req1, blueprintToCraft.ReqAmount1);
+            InventorySystem.Instance.RemoveItem(blueprintToCraft.req1, blueprintToCraft.ReqAmount1);
         }
         else if(blueprintToCraft.numOfRequirements == 2)
         {
-            InventorySystem.instance.RemoveItem(blueprintToCraft.req1, blueprintToCraft.ReqAmount1);
-            InventorySystem.instance.RemoveItem(blueprintToCraft.req2, blueprintToCraft.ReqAmount2);
+            InventorySystem.Instance.RemoveItem(blueprintToCraft.req1, blueprintToCraft.ReqAmount1);
+            InventorySystem.Instance.RemoveItem(blueprintToCraft.req2, blueprintToCraft.ReqAmount2);
         }
 
         StartCoroutine(Calculate());
@@ -84,7 +86,7 @@ public class CraftingSystem : MonoBehaviour
     public IEnumerator Calculate()
     {
         yield return 0;
-        InventorySystem.instance.ReCalculateList();
+        InventorySystem.Instance.ReCalculateList();
         RefreshNeedItems();
     }
 
@@ -93,7 +95,7 @@ public class CraftingSystem : MonoBehaviour
         int stone_count = 0;
         int stick_count = 0;
 
-        inventoryItemList = InventorySystem.instance.itemList;
+        inventoryItemList = InventorySystem.Instance.itemList;
 
         foreach (string itemName in inventoryItemList)
         {

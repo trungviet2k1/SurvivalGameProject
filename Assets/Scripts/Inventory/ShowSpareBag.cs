@@ -10,7 +10,7 @@ public class ShowSpareBag : MonoBehaviour
     {
         Button button = GetComponent<Button>();
 
-        if (InventorySystem.instance.isOpen == true)
+        if (InventorySystem.Instance.isOpen == true)
         {
             button.onClick.AddListener(ToggleSpareBagScreen);
 

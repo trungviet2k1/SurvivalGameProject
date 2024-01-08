@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
-    public static InventorySystem instance { get; set; }
+    public static InventorySystem Instance { get; set; }
+    public GameObject ItemInfoUI;
     public GameObject inventoryScreenUI;
     public List<GameObject> slotList = new List<GameObject>();
     public List<string> itemList = new List<string>();
@@ -23,13 +24,13 @@ public class InventorySystem : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 
@@ -37,6 +38,7 @@ public class InventorySystem : MonoBehaviour
     {
         isOpen = false;
         PopulateSlotList();
+        Cursor.visible = false;
     }
 
     private void PopulateSlotList()
@@ -56,6 +58,7 @@ public class InventorySystem : MonoBehaviour
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             isOpen = true;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
@@ -64,6 +67,7 @@ public class InventorySystem : MonoBehaviour
             if (!CraftingSystem.Instance.isOpen)
             {
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             isOpen = false;
         }
