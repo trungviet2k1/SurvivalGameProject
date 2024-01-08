@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventorySystem : MonoBehaviour
 {
@@ -13,6 +15,11 @@ public class InventorySystem : MonoBehaviour
 
     private GameObject itemToAdd;
     private GameObject whatSlotToEquip;
+
+    //Pickup Popup
+    public GameObject pickupAlert;
+    public Text pickupName;
+    public Image pickupImage;
 
     void Awake()
     {
@@ -54,7 +61,7 @@ public class InventorySystem : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
         {
             inventoryScreenUI.SetActive(false);
-            if (!CraftingSystem.instance.isOpen)
+            if (!CraftingSystem.Instance.isOpen)
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
@@ -70,6 +77,39 @@ public class InventorySystem : MonoBehaviour
         itemToAdd.transform.SetParent(whatSlotToEquip.transform);
 
         itemList.Add(itemName);
+        TriggerPickUpPopUp(itemName, itemToAdd.GetComponent<Image>().sprite);
+
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeedItems();
+    }
+
+    void TriggerPickUpPopUp(string itemName, Sprite itemSprite)
+    {
+        StartCoroutine(ShowPickUpPopUp(itemName, itemSprite));
+    }
+
+    IEnumerator ShowPickUpPopUp(string itemName, Sprite itemSprite)
+    {
+        pickupAlert.SetActive(true);
+        pickupName.text = itemName;
+        pickupImage.sprite = itemSprite;
+
+        CanvasGroup canvasGroup = pickupAlert.GetComponent<CanvasGroup>();
+        float duration = 1f;
+
+        float startAlpha = 1f;
+        float endAlpha = 0f;
+        float currentTime = 0f;
+
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, currentTime / duration);
+            canvasGroup.alpha = alpha;
+            yield return null;
+        }
+
+        pickupAlert.SetActive(false);
     }
 
     private GameObject FindNextEmptySlot()
@@ -121,6 +161,9 @@ public class InventorySystem : MonoBehaviour
                 }
             }
         }
+
+        ReCalculateList();
+        CraftingSystem.Instance.RefreshNeedItems();
     }
 
     public void ReCalculateList()

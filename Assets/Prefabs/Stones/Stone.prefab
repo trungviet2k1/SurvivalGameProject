@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2352074474853258893}
   m_Layer: 0
   m_Name: Stone
-  m_TagString: Stone
+  m_TagString: PickAble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -127,7 +127,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10, y: 0.29629424, z: 10}
+  m_Size: {x: 10, y: 2, z: 10}
   m_Center: {x: -0.003296852, y: 0.0457571, z: -0.005306244}
 --- !u!114 &2352074474853258893
 MonoBehaviour:

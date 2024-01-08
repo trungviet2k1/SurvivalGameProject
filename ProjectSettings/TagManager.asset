@@ -9,7 +9,7 @@ TagManager:
   - Plane
   - Tree
   - ItemSlot
-  - BigStone
+  - PickAble
   layers:
   - Default
   - TransparentFX

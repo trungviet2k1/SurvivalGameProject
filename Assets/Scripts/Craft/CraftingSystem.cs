@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CraftingSystem : MonoBehaviour
 {
-    public static CraftingSystem instance { get; set; }
+    public static CraftingSystem Instance { get; set; }
 
     public GameObject craftingScreenUI;
     public List<string> inventoryItemList = new List<string>();
@@ -23,13 +23,13 @@ public class CraftingSystem : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            instance = this;
+            Instance = this;
         }
     }
 
@@ -47,8 +47,6 @@ public class CraftingSystem : MonoBehaviour
 
     void Update()
     {
-        RefreshNeedItems();
-
         if (Input.GetKeyDown(KeyCode.B) && !isOpen)
         {
             craftingScreenUI.SetActive(true);
@@ -81,16 +79,16 @@ public class CraftingSystem : MonoBehaviour
         }
 
         StartCoroutine(Calculate());
-        RefreshNeedItems();
     }
 
     public IEnumerator Calculate()
     {
-        yield return new WaitForSeconds(1f);
+        yield return 0;
         InventorySystem.instance.ReCalculateList();
+        RefreshNeedItems();
     }
 
-    private void RefreshNeedItems()
+    public void RefreshNeedItems()
     {
         int stone_count = 0;
         int stick_count = 0;
