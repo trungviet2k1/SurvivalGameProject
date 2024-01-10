@@ -1,111 +1,48 @@
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Generator : MonoBehaviour
 {
     [System.Serializable]
-    public class TreeData
+    public class SpawnData
     {
-        public GameObject treeObject;
-        public int treeAmount;
+        public GameObject prefab;
+        public int amount;
     }
 
-    [System.Serializable]
-    public class RabitData
-    {
-        public GameObject rabitObject;
-        public int rabitAmount;
-    }
-
-    [System.Serializable]
-    public class StoneData
-    {
-        public GameObject stoneObject;
-        public int stoneAmount;
-    }
-
-    public List<TreeData> treesData = new List<TreeData>();
-    public List<RabitData> rabitsData = new List<RabitData>();
-    public List<StoneData> stonesData = new List<StoneData>();
+    public List<SpawnData> allSpawnData = new List<SpawnData>();
 
     public Terrain terrain;
-    public GameObject planes;
-    public GameObject animals;
-    public GameObject stones;
+    public GameObject parent;
 
     void Start()
     {
-        foreach (TreeData data in treesData)
-        {
-            GenerateTrees(data.treeObject, data.treeAmount);
-        }
+        GenerateObjects();
+    }
 
-        foreach (RabitData data in rabitsData)
+    void GenerateObjects()
+    {
+        foreach (SpawnData data in allSpawnData)
         {
-            GenerateRabits(data.rabitObject, data.rabitAmount);
-        }
+            for (int i = 0; i < data.amount; i++)
+            {
+                Vector3 randomPos = GetRandomPosition(terrain.terrainData.size);
 
-        foreach (StoneData data in stonesData)
-        {
-            GenerateStones(data.stoneObject, data.stoneAmount);
+                GameObject newObject = Instantiate(data.prefab, randomPos, Quaternion.identity);
+                newObject.transform.parent = parent.transform;
+            }
         }
     }
 
-    void GenerateTrees(GameObject treeObject, int treeAmount)
+    Vector3 GetRandomPosition(Vector3 terrainSize)
     {
-        TerrainData terrainData = terrain.terrainData;
-        Vector3 terrainSize = terrainData.size;
+        float randomX = Random.Range(0f, terrainSize.x);
+        float randomZ = Random.Range(0f, terrainSize.z);
 
-        for (int i = 0; i < treeAmount; i++)
-        {
-            float randomX = Random.Range(0f, terrainSize.x);
-            float randomZ = Random.Range(0f, terrainSize.z);
+        Vector3 randomPos = new Vector3(randomX, 0f, randomZ);
+        randomPos.y = terrain.SampleHeight(randomPos);
 
-            Vector3 randomPos = new Vector3(randomX, 0f, randomZ);
-
-            // Convert position to world space
-            randomPos.y = terrain.SampleHeight(randomPos);
-
-            GameObject newTree = Instantiate(treeObject, randomPos, Quaternion.identity);
-            newTree.transform.parent = planes.transform;
-        }
-    }
-
-    void GenerateRabits(GameObject rabitObject, int rabitAmount)
-    {
-        TerrainData terrainData = terrain.terrainData;
-        Vector3 terrainSize = terrainData.size;
-
-        for (int i = 0; i < rabitAmount; i++)
-        {
-            float randomX = Random.Range(0f, terrainSize.x);
-            float randomZ = Random.Range(0f, terrainSize.z);
-
-            Vector3 randomPos = new Vector3(randomX, 0f, randomZ);
-
-            randomPos.y = terrain.SampleHeight(randomPos);
-
-            GameObject newRabit = Instantiate(rabitObject, randomPos, Quaternion.identity);
-            newRabit.transform.parent = animals.transform;
-        }
-    }
-
-    void GenerateStones(GameObject stoneObject, int stoneAmount)
-    {
-        TerrainData terrainData = terrain.terrainData;
-        Vector3 terrainSize = terrainData.size;
-
-        for (int i = 0; i < stoneAmount; i++)
-        {
-            float randomX = Random.Range(0f, terrainSize.x);
-            float randomZ = Random.Range(0f, terrainSize.z);
-
-            Vector3 randomPos = new Vector3(randomX, 0f, randomZ);
-
-            randomPos.y = terrain.SampleHeight(randomPos);
-
-            GameObject newStone = Instantiate(stoneObject, randomPos, Quaternion.identity);
-            newStone.transform.parent = stones.transform;
-        }
+        return randomPos;
     }
 }

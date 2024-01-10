@@ -71,6 +71,8 @@ MonoBehaviour:
   canBeChopped: 0
   treeMaxHealth: 14
   treeHealth: 0
+  anim: {fileID: 0}
+  caloriesSpentChoppingWood: 20
 --- !u!65 &4791391594089905798
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -239,4 +241,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: "C\xE2y s\u1ED3i"
+  ItemName: Oak tree

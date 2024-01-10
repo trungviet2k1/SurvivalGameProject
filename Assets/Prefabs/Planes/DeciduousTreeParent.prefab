@@ -66,6 +66,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deciduous_tree1
       objectReference: {fileID: 0}
+    - target: {fileID: 6088768269351150134, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6240a66c3b9d13e4993f7a6e90176da2, type: 2}
     - target: {fileID: 6684261082700960729, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -105,6 +109,10 @@ PrefabInstance:
     - target: {fileID: 6684261082700960729, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7446544536967187596, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
+      propertyPath: caloriesSpentChoppingWood
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 886440839295845937}
   - component: {fileID: 2608401974971536936}
   m_Layer: 0
-  m_Name: Log
+  m_Name: Birch
   m_TagString: PickAble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,15 +244,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2709252751542637084}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.51, z: 0.05}
+  m_LocalRotation: {x: 0.08913948, y: -0, z: -0, w: 0.9960192}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0.05}
   m_LocalScale: {x: 0.8, y: 1, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7399145865483425214}
   - {fileID: 6849147640254499947}
   m_Father: {fileID: 4904695894990029346}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.228, y: 0, z: 0}
 --- !u!33 &2633311973647426550
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Log
+  ItemName: Birch
 --- !u!65 &2608401974971536936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904695894990029346}
   m_Layer: 0
-  m_Name: ChoppedTree
+  m_Name: ChoppedBirchTree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 4664340442865667132}
   - component: {fileID: 1843228361031068765}
   m_Layer: 0
-  m_Name: Log
+  m_Name: Birch Log
   m_TagString: PickAble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,15 +881,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7140249450565848463}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.54, z: -0.14}
+  m_LocalRotation: {x: -0.077396855, y: -0, z: -0, w: 0.9970004}
+  m_LocalPosition: {x: 0, y: 3.74, z: -0.15}
   m_LocalScale: {x: 0.8, y: 1, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4445808271174549438}
   - {fileID: 1528301674197904264}
   m_Father: {fileID: 4904695894990029346}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -8.878, y: 0, z: 0}
 --- !u!33 &4641557690235176471
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Log
+  ItemName: Birch
 --- !u!65 &1843228361031068765
 BoxCollider:
   m_ObjectHideFlags: 0

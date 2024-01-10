@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(BoxCollider))]
@@ -65,8 +65,23 @@ public class ChoppableTree : MonoBehaviour
         SelectionManager.Instance.selectedTree = null;
         SelectionManager.Instance.chopHolder.gameObject.SetActive(false);
 
-        GameObject brokenTree = Instantiate(Resources.Load<GameObject>("ChoppedTree"),
-            new Vector3(treePosition.x, treePosition.y, treePosition.z), Quaternion.Euler(0, 0, 0));
+        if (SelectionManager.Instance.selectedObject != null)
+        {
+            string itemName = SelectionManager.Instance.selectedObject.GetComponent<InteractableObject>().GetItemName();
+            Dictionary<string, string> treePrefabMap = new Dictionary<string, string>()
+        {
+            { "Birch tree", "ChoppedBirchTree" },
+            { "Oak tree", "ChoppedOakTree" },
+            { "Deciduous tree", "ChoppedDeciduousTree" }
+        };
+
+            if (treePrefabMap.ContainsKey(itemName))
+            {
+                string prefabName = treePrefabMap[itemName];
+                GameObject choppedTreePrefab = Instantiate(Resources.Load<GameObject>(prefabName),
+                    new Vector3(treePosition.x, treePosition.y, treePosition.z), Quaternion.Euler(0, 0, 0));
+            }
+        }
     }
 
     void Update()

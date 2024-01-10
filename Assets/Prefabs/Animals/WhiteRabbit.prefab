@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: "Th\u1ECF con"
+  ItemName: Small Rabbit
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0

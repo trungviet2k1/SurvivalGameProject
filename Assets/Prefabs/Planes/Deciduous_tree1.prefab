@@ -71,6 +71,8 @@ MonoBehaviour:
   canBeChopped: 0
   treeMaxHealth: 16
   treeHealth: 0
+  anim: {fileID: 0}
+  caloriesSpentChoppingWood: 20
 --- !u!65 &2949205272563986714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -239,4 +241,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: "C\xE2y l\xE1 r\u1EE5ng"
+  ItemName: Deciduous tree

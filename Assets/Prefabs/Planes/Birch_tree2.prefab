@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: "C\xE2y b\u1EA1ch d\u01B0\u01A1ng"
+  ItemName: Birch tree
 --- !u!1 &2219025393130335134
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,6 +219,8 @@ MonoBehaviour:
   canBeChopped: 0
   treeMaxHealth: 10
   treeHealth: 0
+  anim: {fileID: 0}
+  caloriesSpentChoppingWood: 0
 --- !u!65 &7882177626674489919
 BoxCollider:
   m_ObjectHideFlags: 0
