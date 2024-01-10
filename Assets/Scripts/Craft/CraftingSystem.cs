@@ -19,7 +19,7 @@ public class CraftingSystem : MonoBehaviour
     [HideInInspector] public bool isOpen;
 
     //All Blueprint
-    public Blueprint AxeBLP = new("Axe", 2, "Stone", 3, "Stick", 3);
+    public Blueprint AxeBLP = new("StoneAxe", 2, "Stone", 3, "Stick", 3);
 
     void Awake()
     {
@@ -38,10 +38,10 @@ public class CraftingSystem : MonoBehaviour
         isOpen = false;
 
         //Axe
-        req1 = craftingScreenUI.transform.Find("Axe").transform.Find("ReqItem1").GetComponent<Text>();
-        req2 = craftingScreenUI.transform.Find("Axe").transform.Find("ReqItem2").GetComponent<Text>();
+        req1 = craftingScreenUI.transform.Find("StoneAxe").transform.Find("ReqItem1").GetComponent<Text>();
+        req2 = craftingScreenUI.transform.Find("StoneAxe").transform.Find("ReqItem2").GetComponent<Text>();
 
-        craftButton = craftingScreenUI.transform.Find("Axe").transform.Find("Craft").GetComponent<Button>();
+        craftButton = craftingScreenUI.transform.Find("StoneAxe").transform.Find("Craft").GetComponent<Button>();
         craftButton.onClick.AddListener(delegate { CraftAnyItem(AxeBLP); });
     }
 
