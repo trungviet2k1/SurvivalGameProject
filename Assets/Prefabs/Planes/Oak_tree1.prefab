@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   canBeChopped: 0
-  treeMaxHealth: 10
+  treeMaxHealth: 14
   treeHealth: 0
 --- !u!65 &4791391594089905798
 BoxCollider:
@@ -200,7 +200,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 2.98
-  m_Height: 8.15
+  m_Height: 12.15
   m_Direction: 1
   m_Center: {x: 0, y: 2.11, z: 0}
 --- !u!136 &199211971683448524

@@ -12,7 +12,8 @@ public class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        if (!gameObject.CompareTag("Animal") && !gameObject.CompareTag("Plane") && !gameObject.CompareTag("Stone"))
+        if (!gameObject.CompareTag("Animal") && !gameObject.CompareTag("Plane") 
+            && !gameObject.CompareTag("Stone"))
         {
             if (Input.GetKeyDown(KeyCode.F) && playerInRange && SelectionManager.Instance.selectedObject == gameObject)
             {
