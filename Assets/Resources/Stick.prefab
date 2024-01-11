@@ -118,10 +118,10 @@ MonoBehaviour:
   thisName: Stick
   thisDescription: A dry stick
   thisFunctionality: Used for crafting
-  isConsumable: 1
-  healthEffect: 10
-  caloriesEffect: 100
-  hydrationEffect: 2
+  isConsumable: 0
+  healthEffect: 0
+  caloriesEffect: 0
+  hydrationEffect: 0
   isEquippable: 0
   isInsideQuickSlot: 0
   isSelected: 0
