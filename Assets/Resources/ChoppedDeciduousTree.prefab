@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Deciduous
+  ItemName: Log
 --- !u!65 &2608401974971536936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Deciduous
+  ItemName: Log
 --- !u!65 &1843228361031068765
 BoxCollider:
   m_ObjectHideFlags: 0

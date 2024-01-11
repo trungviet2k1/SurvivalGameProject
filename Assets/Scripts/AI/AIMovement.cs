@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AIMovement : MonoBehaviour
 {
-    Animator anim;
+    [Header("Movement Settings")]
     public float moveSpeed = 0.2f;
-
-    Vector3 stopPosition;
-    float walkTime;
     public float walkCounter;
-    float waitTime;
     public float waitCounter;
+
+    Animator anim;
+    Vector3 stopPosition;
+    bool isWalking;
+    float walkTime;
+    float waitTime;
     int walkDirection;
-    public bool isWalking;
 
     void Start()
     {

@@ -1,25 +1,26 @@
+using System;
+
 [System.Serializable]
 public class Blueprint
 {
     public string itemName;
     public int numOfRequirements;
+    public string[] requiredItems;
+    public int[] numberOfRequests;
+    public int numberOfItemsCreated;
 
-    public string req1;
-    public string req2;
-
-    public int ReqAmount1;
-    public int ReqAmount2;
-
-    public int numOfResults;
-
-    public Blueprint(string name, int numReq, string r1, int r1Amt, string r2, int r2Amt, int numResults)
+    public Blueprint(string name, int producedItems, params Tuple<string, int>[] reqs)
     {
         itemName = name;
-        numOfRequirements = numReq;
-        req1 = r1;
-        ReqAmount1 = r1Amt;
-        req2 = r2;
-        ReqAmount2 = r2Amt;
-        numOfResults = numResults;
+        numberOfItemsCreated = producedItems;
+        numOfRequirements = reqs.Length;
+        requiredItems = new string[numOfRequirements];
+        numberOfRequests = new int[numOfRequirements];
+
+        for (int i = 0; i < numOfRequirements; i++)
+        {
+            requiredItems[i] = reqs[i].Item1;
+            numberOfRequests[i] = reqs[i].Item2;
+        }
     }
 }

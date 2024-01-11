@@ -2,33 +2,36 @@ using UnityEngine;
 
 public class CraftingScreenController : MonoBehaviour
 {
+    [Header("List of tools")]
     public CanvasGroup toolsCanvasGroup;
-    public GameObject toolsContent;
+    public GameObject toolsMenu;
+
+    [Header("List of architectures")]
     public CanvasGroup architectureCanvasGroup;
-    public GameObject architectureContent;
+    public GameObject architectureMenu;
 
     void Start()
     {
         toolsCanvasGroup.alpha = 1f;
         architectureCanvasGroup.alpha = 0.7f;
-        architectureContent.SetActive(false);
+        architectureMenu.SetActive(false);
     }
 
     public void OnToolsButtonClick()
     {
         toolsCanvasGroup.alpha = 1f;
-        toolsContent.SetActive(true);
+        toolsMenu.SetActive(true);
 
         architectureCanvasGroup.alpha = 0.7f;
-        architectureContent.SetActive(false);
+        architectureMenu.SetActive(false);
     }
 
     public void OnArchitectureButtonClick()
     {
         architectureCanvasGroup.alpha = 1f;
-        architectureContent.SetActive(true);
+        architectureMenu.SetActive(true);
 
         toolsCanvasGroup.alpha = 0.7f;
-        toolsContent.SetActive(false);
+        toolsMenu.SetActive(false);
     }
 }

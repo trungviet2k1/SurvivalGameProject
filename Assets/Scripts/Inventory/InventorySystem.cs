@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,20 +6,25 @@ using UnityEngine.UI;
 public class InventorySystem : MonoBehaviour
 {
     public static InventorySystem Instance { get; set; }
-    public GameObject ItemInfoUI;
+
+    [Header("Inventory")]
     public GameObject inventoryScreenUI;
     public List<GameObject> slotList = new List<GameObject>();
+
+    [Header("List Items")]
     public List<string> itemList = new List<string>();
 
-    [HideInInspector] public bool isOpen;
+    [Header("Item Information")]
+    public GameObject ItemInfoUI;
 
-    private GameObject itemToAdd;
-    private GameObject whatSlotToEquip;
-
-    //Pickup Popup
+    [Header("Notification")]
     public GameObject pickupAlert;
     public Text pickupName;
     public Image pickupImage;
+
+    [HideInInspector] public bool isOpen;
+    private GameObject itemToAdd;
+    private GameObject whatSlotToEquip;
 
     void Awake()
     {

@@ -5,15 +5,18 @@ using UnityEngine;
 [RequireComponent (typeof(BoxCollider))]
 public class ChoppableTree : MonoBehaviour
 {
-    public bool playerInRange;
-    public bool canBeChopped;
-
+    [Header("Tree Status")]
     public float treeMaxHealth;
     public float treeHealth;
 
+    [Header("Consuming")]
+    public float caloriesSpentChoppingWood = 20;
+    
+    [Header("Animation")]
     public Animator anim;
 
-    public float caloriesSpentChoppingWood = 20;
+    [HideInInspector] public bool playerInRange;
+    [HideInInspector] public bool canBeChopped;
 
     void Start()
     {

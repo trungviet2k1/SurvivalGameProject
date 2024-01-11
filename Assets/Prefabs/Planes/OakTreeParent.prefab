@@ -62,10 +62,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1725831375810041158}
     m_Modifications:
-    - target: {fileID: 345240040614868358, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
-      propertyPath: caloriesSpentChoppingWood
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5505950069431072149, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

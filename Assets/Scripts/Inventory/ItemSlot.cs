@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class ItemSlot : MonoBehaviour, IDropHandler
 {
-    public GameObject item
+    public GameObject Item
     {
         get
         {
@@ -17,7 +17,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (!item)
+        if (!Item)
         {
             SoundManager.Instance.PlaySound(SoundManager.Instance.dropItemSound);
             DragDrop.itemBeingDragged.transform.SetParent(transform);

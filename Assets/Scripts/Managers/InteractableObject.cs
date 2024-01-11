@@ -3,6 +3,7 @@
 public class InteractableObject : MonoBehaviour
 {
     public bool playerInRange;
+    [Header("Name")]
     public string ItemName;
 
     public string GetItemName()

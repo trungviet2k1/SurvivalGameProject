@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class TrashSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public GameObject trashAlertUI;
-    private Text textModify;
-
     public Sprite trash_closed;
     public Sprite trash_opened;
 
+    private Text textModify;
     private Image imageComponent;
     Button YesBtn, NoBtn;
 

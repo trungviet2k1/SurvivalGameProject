@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GlobalState : MonoBehaviour
 {
     public static GlobalState Instance {  get; set; }
-    public float resourceHealth;
-    public float resourceMaxHealth;
+
+    [HideInInspector] public float resourceHealth;
+    [HideInInspector] public float resourceMaxHealth;
 
     void Awake()
     {

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7752293019557291827}
   - component: {fileID: 7060193469599165035}
   m_Layer: 5
-  m_Name: TreatedBirchWood
+  m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f2fe659145bb1d41a97ff6766f9f8dd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c846b332c2e688c49912341242b5c544, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -115,10 +115,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrashable: 1
-  thisName: Treated birch wood
-  thisDescription: Treated birch logs look much cleaner and more beautiful
-  thisFunctionality: It can be used to build projects, or to create quality wooden
-    planks
+  thisName: Plank
+  thisDescription: Wooden planks made from treated wood look very beautiful and bright
+  thisFunctionality: It can be used to create many different pieces of furniture
   isConsumable: 0
   healthEffect: 0
   caloriesEffect: 0

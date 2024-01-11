@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,20 +7,18 @@ public class CraftingSystem : MonoBehaviour
 {
     public static CraftingSystem Instance { get; set; }
 
+    [Header("UI")]
     public GameObject craftingScreenUI;
+
+    [Header("Item in Inventory")]
     public List<string> inventoryItemList = new List<string>();
 
-    //Craft Buttons
-    Button craftAxeButton, craftBirchButton;
-
-    //Requirement Items
-    Text AxeReq1, AxeReq2, birchReq1;
+    [Header("Set up crafting items")]
+    public Blueprint[] blueprints;
+    public Text[] requiredItems;
+    public Button[] craftedButton;
 
     [HideInInspector] public bool isOpen;
-
-    //All Blueprint
-    public Blueprint AxeBLP = new("StoneAxe", 2, "Stone", 3, "Stick", 3, 1);
-    public Blueprint TreatedBirchWoodBLP = new("TreatedBirchWood", 1, "Birch", 1, "", 0, 2);
 
     void Awake()
     {
@@ -39,18 +36,13 @@ public class CraftingSystem : MonoBehaviour
     {
         isOpen = false;
 
-        //Axe
-        AxeReq1 = craftingScreenUI.transform.Find("Tools").transform.Find("ToolMenu").transform.Find("StoneAxe").transform.Find("ReqItem1").GetComponent<Text>();
-        AxeReq2 = craftingScreenUI.transform.Find("Tools").transform.Find("ToolMenu").transform.Find("StoneAxe").transform.Find("ReqItem2").GetComponent<Text>();
+        for (int i = 0; i < blueprints.Length; i++)
+        {
+            int index = i;
+            craftedButton[index].onClick.AddListener(delegate { CraftAnyItem(blueprints[index]); });
+        }
 
-        craftAxeButton = craftingScreenUI.transform.Find("Tools").transform.Find("ToolMenu").transform.Find("StoneAxe").transform.Find("Craft").GetComponent<Button>();
-        craftAxeButton.onClick.AddListener(delegate { CraftAnyItem(AxeBLP); });
-
-        //TreatedBirchWood
-        birchReq1 = craftingScreenUI.transform.Find("Architecture").transform.Find("ArchitectureMenu").transform.Find("TreatedBirchWood").transform.Find("ReqItem1").GetComponent<Text>();
-
-        craftBirchButton = craftingScreenUI.transform.Find("Architecture").transform.Find("ArchitectureMenu").transform.Find("TreatedBirchWood").transform.Find("Craft").GetComponent<Button>();
-        craftBirchButton.onClick.AddListener(delegate { CraftAnyItem(TreatedBirchWoodBLP); });
+        RefreshNeedItems();
     }
 
     void Update()
@@ -83,14 +75,9 @@ public class CraftingSystem : MonoBehaviour
         SoundManager.Instance.PlaySound(SoundManager.Instance.craftingItemSound);
         StartCoroutine(CraftedDelayForSound(blueprintToCraft));
 
-        if (blueprintToCraft.numOfRequirements == 1)
+        for (int i = 0; i < blueprintToCraft.numOfRequirements; i++)
         {
-            InventorySystem.Instance.RemoveItem(blueprintToCraft.req1, blueprintToCraft.ReqAmount1);
-        }
-        else if (blueprintToCraft.numOfRequirements == 2)
-        {
-            InventorySystem.Instance.RemoveItem(blueprintToCraft.req1, blueprintToCraft.ReqAmount1);
-            InventorySystem.Instance.RemoveItem(blueprintToCraft.req2, blueprintToCraft.ReqAmount2);
+            InventorySystem.Instance.RemoveItem(blueprintToCraft.requiredItems[i], blueprintToCraft.numberOfRequests[i]);
         }
 
         StartCoroutine(Calculate());
@@ -100,7 +87,7 @@ public class CraftingSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        for (var i = 0; i < blueprintToCraft.numOfResults; i++)
+        for (int i = 0; i < blueprintToCraft.numberOfItemsCreated; i++)
         {
             InventorySystem.Instance.AddToInventory(blueprintToCraft.itemName);
         }
@@ -117,7 +104,8 @@ public class CraftingSystem : MonoBehaviour
     {
         int stone_count = 0;
         int stick_count = 0;
-        int birchLog_count = 0;
+        int log_count = 0;
+        int treatedWood_count = 0;
 
         inventoryItemList = InventorySystem.Instance.itemList;
 
@@ -131,35 +119,72 @@ public class CraftingSystem : MonoBehaviour
                 case "Stick":
                     stick_count += 1;
                     break;
-                case "Birch":
-                    birchLog_count += 1;
+                case "Log":
+                    log_count += 1;
+                    break;
+                case "TreatedWood":
+                    treatedWood_count += 1;
                     break;
             }
         }
 
         //Axe
-        AxeReq1.text = "3 Stones ["+ stone_count +"/3]";
-        AxeReq2.text = "3 Sticks ["+ stick_count +"/3]";
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[0] != null && requiredItems[0] != null && requiredItems[1] != null)
+            {
+                Transform axeReq1 = requiredItems[0].transform;
+                Transform axeReq2 = requiredItems[1].transform;
+                axeReq1.GetComponent<Text>().text = "3 Stones [" + stone_count + "/3]";
+                axeReq2.GetComponent<Text>().text = "3 Sticks [" + stick_count + "/3]";
 
-        if (stone_count >= 3 && stick_count >= 3 && InventorySystem.Instance.CheckSlotsAvailable(1))
-        {
-            craftAxeButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            craftAxeButton.gameObject.SetActive(false);
+                if (stone_count >= 3 && stick_count >= 3 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[0].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[0].gameObject.SetActive(false);
+                } 
+            }
         }
 
-        //TreatedBirchWood
-        birchReq1.text = "1 Birch log [" + birchLog_count + "/1]";
+        //TreatedWood
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[1] != null && requiredItems[2] != null)
+            {
+                Transform birchReq = requiredItems[2].transform;
+                birchReq.GetComponent<Text>().text = "1 Log [" + log_count + "/1]";
 
-        if (birchLog_count >= 1 && InventorySystem.Instance.CheckSlotsAvailable(2))
-        {
-            craftBirchButton.gameObject.SetActive(true);
+                if (log_count >= 1 && InventorySystem.Instance.CheckSlotsAvailable(2))
+                {
+                    craftedButton[1].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[1].gameObject.SetActive(false);
+                } 
+            }
         }
-        else
+
+        //Plank
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
         {
-            craftBirchButton.gameObject.SetActive(false);
+            if (craftedButton[2] != null && requiredItems[3] != null)
+            {
+                Transform plankReq = requiredItems[3].transform;
+                plankReq.GetComponent<Text>().text = "1 Treated wood [" + treatedWood_count + "/1]";
+
+                if (treatedWood_count >= 1 && InventorySystem.Instance.CheckSlotsAvailable(4))
+                {
+                    craftedButton[2].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[2].gameObject.SetActive(false);
+                } 
+            }
         }
     }
 }

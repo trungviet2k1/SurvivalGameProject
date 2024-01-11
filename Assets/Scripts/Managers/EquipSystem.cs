@@ -1,18 +1,21 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EquipSystem : MonoBehaviour
 {
     public static EquipSystem Instance { get; set; }
+
+    [Header("Quick Slot UI")]
     public GameObject quickSlotsPanel;
 
+    [Header("Quick Slot List")]
     public List<GameObject> quickSlotsList = new();
     public GameObject numbersHolder;
     public int selectedNumber = -1;
     public GameObject selectedItem;
+
+    [Header("Item being held")]
     public GameObject ToolHolder;
     public GameObject selectedItemModel;
 

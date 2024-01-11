@@ -1,36 +1,33 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
-    public bool isTrashable;
+    [Header("Item information")]
+    public string thisName;
+    public string thisDescription;
+    public string thisFunctionality;
 
-    private GameObject itemInfoUI;
-
-    //Item Info UI
-    private Text itemInfoUI_itemName;
-    private Text itemInfoUI_itemDescription;
-    private Text itemInfoUI_itemFunctionality;
-
-    public string thisName, thisDescription, thisFunctionality;
-
-    //Consumption
-    private GameObject itemPendingConsumption;
+    [Header("Consumption")]
     public bool isConsumable;
-
     public float healthEffect;
     public float caloriesEffect;
     public float hydrationEffect;
+    private GameObject itemPendingConsumption;
 
-    //Equipping
+    [Header("Equipping")]
     public bool isEquippable;
-    private GameObject itemPendingEquipping;
-    public bool isInsideQuickSlot;
-    public bool isSelected;
+    [HideInInspector] public bool isInsideQuickSlot;
+    [HideInInspector] public bool isSelected;
+
+    [Header("Delete items")]
+    public bool isTrashable;
+
+    private GameObject itemInfoUI;
+    private Text itemInfoUI_itemName;
+    private Text itemInfoUI_itemDescription;
+    private Text itemInfoUI_itemFunctionality;
 
     void Start()
     {
@@ -92,6 +89,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 DestroyImmediate(gameObject);
                 InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.Instance.RefreshNeedItems();
+                itemInfoUI.SetActive(false);
             }
         }
     }

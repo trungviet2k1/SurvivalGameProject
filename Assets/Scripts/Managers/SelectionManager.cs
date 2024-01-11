@@ -1,20 +1,24 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
     public static SelectionManager Instance {  get; set; }
-    public bool onTarget;
+
     public GameObject selectedObject;
+
+    [Header("UI")]
     public GameObject interaction_info_UI;
     public Image centerDotImage;
     public Image handIcon;
     Text interaction_Text;
-    public bool handIsVisible;
 
+    [Header("Tree")]
     public GameObject selectedTree;
     public GameObject chopHolder;
+
+    [HideInInspector] public bool onTarget;
+    [HideInInspector] public bool handIsVisible;
 
     void Start()
     {
@@ -38,9 +42,8 @@ public class SelectionManager : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             var selectionTransform = hit.transform;
 
@@ -108,7 +111,6 @@ public class SelectionManager : MonoBehaviour
         handIcon.enabled = false;
         centerDotImage.enabled = false;
         interaction_info_UI.SetActive(false);
-
         selectedObject = null;
     }
 

@@ -110,10 +110,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9170780733507422583, guid: cefc5feb354724544ba2da304058dc37, type: 3}
-      propertyPath: caloriesSpentChoppingWood
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

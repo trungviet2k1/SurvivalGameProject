@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance { get; set; }
 
-    //Sound Effect
+    [Header("Sound Effect")]
     public AudioSource dropItemSound;
     public AudioSource craftingItemSound;
     public AudioSource toolSwingSound;
@@ -14,7 +12,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource pickUpItemSound;
     public AudioSource grassWalkSound;
 
-    //Music
+    [Header("Game Music")]
     public AudioSource startingZoneBGMusic;
 
     void Awake()

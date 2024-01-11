@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ShowSpareBag : MonoBehaviour
 {
     public GameObject spareBagScreenUI;
-    public bool isSpareBagOpen;
+    [HideInInspector] public bool isSpareBagOpen;
 
     void Start()
     {
