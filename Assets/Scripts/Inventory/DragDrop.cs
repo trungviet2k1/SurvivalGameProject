@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -42,5 +42,18 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
+        InventorySystem.Instance.ReCalculateList();
+        SpareBagSystem.Instance.ReCalculateList();
+        CraftingSystem.Instance.RefreshNeedItems();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            SpareBagSystem.Instance.TransferToSpareBag(gameObject);
+            CraftingSystem.Instance.RefreshNeedItems();
+        }
     }
 }

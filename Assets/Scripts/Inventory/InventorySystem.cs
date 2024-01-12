@@ -126,7 +126,7 @@ public class InventorySystem : MonoBehaviour
         pickupAlert.SetActive(false);
     }
 
-    private GameObject FindNextEmptySlot()
+    public GameObject FindNextEmptySlot()
     {
         foreach (GameObject slot in slotList)
         {

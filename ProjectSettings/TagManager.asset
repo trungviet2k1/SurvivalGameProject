@@ -11,6 +11,8 @@ TagManager:
   - ItemSlot
   - PickAble
   - QuickSlot
+  - Log
+  - SpareBagSlot
   layers:
   - Default
   - TransparentFX
