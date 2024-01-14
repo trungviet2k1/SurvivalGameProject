@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -23,6 +24,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [Header("Delete items")]
     public bool isTrashable;
+
+    [Header("Usable items")]
+    public bool isUseable;
 
     private GameObject itemInfoUI;
     private Text itemInfoUI_itemName;
@@ -77,6 +81,13 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 EquipSystem.Instance.AddToQuickSlots(gameObject);
                 isInsideQuickSlot = true;
             }
+
+            if (isUseable)
+            {
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
+                gameObject.SetActive(false);
+                UseItem();
+            }
         }
     }
 
@@ -91,6 +102,49 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 CraftingSystem.Instance.RefreshNeedItems();
                 itemInfoUI.SetActive(false);
             }
+        }
+    }
+
+    private void UseItem()
+    {
+        itemInfoUI.SetActive(false);
+
+
+        InventorySystem.Instance.isOpen = false;
+        InventorySystem.Instance.inventoryScreenUI.SetActive(false);
+
+        CraftingSystem.Instance.isOpen = false;
+        CraftingSystem.Instance.craftingScreenUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        SelectionManager.Instance.EnableSelection();
+        SelectionManager.Instance.enabled = true;
+
+        switch (gameObject.name)
+        {
+            case "Foundation(Clone)":
+                ConstructionManager.Instance.ActiveConstructionPlacement("FoundationModel");
+                break;
+            case "Foundation":
+                ConstructionManager.Instance.ActiveConstructionPlacement("FoundationModel");
+                break;
+            case "Wall(Clone)":
+                ConstructionManager.Instance.ActiveConstructionPlacement("WallModel");
+                break;
+            case "Wall":
+                ConstructionManager.Instance.ActiveConstructionPlacement("WallModel");
+                break;
+            case "Floor(Clone)":
+                ConstructionManager.Instance.ActiveConstructionPlacement("FloorModel");
+                break;
+            case "Floor":
+                ConstructionManager.Instance.ActiveConstructionPlacement("FloorModel");
+                break;
+            default:
+                //do nothing
+                break;
         }
     }
 

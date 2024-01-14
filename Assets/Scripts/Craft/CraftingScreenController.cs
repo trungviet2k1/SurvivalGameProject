@@ -10,11 +10,17 @@ public class CraftingScreenController : MonoBehaviour
     public CanvasGroup architectureCanvasGroup;
     public GameObject architectureMenu;
 
+    [Header("List of constructions")]
+    public CanvasGroup constructionCanvasGroup;
+    public GameObject constructionMenu;
+
     void Start()
     {
         toolsCanvasGroup.alpha = 1f;
         architectureCanvasGroup.alpha = 0.7f;
         architectureMenu.SetActive(false);
+        constructionCanvasGroup.alpha = 0.7f;
+        constructionMenu.SetActive(false);
     }
 
     public void OnToolsButtonClick()
@@ -24,6 +30,9 @@ public class CraftingScreenController : MonoBehaviour
 
         architectureCanvasGroup.alpha = 0.7f;
         architectureMenu.SetActive(false);
+
+        constructionCanvasGroup.alpha = 0.7f;
+        constructionMenu.SetActive(false);
     }
 
     public void OnArchitectureButtonClick()
@@ -33,5 +42,20 @@ public class CraftingScreenController : MonoBehaviour
 
         toolsCanvasGroup.alpha = 0.7f;
         toolsMenu.SetActive(false);
+
+        constructionCanvasGroup.alpha = 0.7f;
+        constructionMenu.SetActive(false);
+    }
+
+    public void OnConstructionButtonClick()
+    {
+        constructionCanvasGroup.alpha = 1f;
+        constructionMenu.SetActive(true);
+
+        toolsCanvasGroup.alpha = 0.7f;
+        toolsMenu.SetActive(false);
+
+        architectureCanvasGroup.alpha = 0.7f;
+        architectureMenu.SetActive(false);
     }
 }

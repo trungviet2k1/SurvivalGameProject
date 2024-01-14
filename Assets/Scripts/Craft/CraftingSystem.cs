@@ -47,7 +47,7 @@ public class CraftingSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.B) && !isOpen && !ConstructionManager.Instance.inConstrucionMode)
         {
             craftingScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -106,6 +106,7 @@ public class CraftingSystem : MonoBehaviour
         int stick_count = 0;
         int log_count = 0;
         int treatedWood_count = 0;
+        int plank_cound = 0;
 
         inventoryItemList = InventorySystem.Instance.itemList;
 
@@ -124,6 +125,9 @@ public class CraftingSystem : MonoBehaviour
                     break;
                 case "TreatedWood":
                     treatedWood_count += 1;
+                    break;
+                case "Plank":
+                    plank_cound += 1;
                     break;
             }
         }
@@ -184,6 +188,63 @@ public class CraftingSystem : MonoBehaviour
                 {
                     craftedButton[2].gameObject.SetActive(false);
                 } 
+            }
+        }
+
+        //Foundation
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[3] != null && requiredItems[4] != null)
+            {
+                Transform foundationReq = requiredItems[4].transform;
+                foundationReq.GetComponent<Text>().text = "4 plank [" + plank_cound + "/1]";
+
+                if (plank_cound >= 4 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[3].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[3].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        //Wall
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[4] != null && requiredItems[5] != null)
+            {
+                Transform wallReq = requiredItems[5].transform;
+                wallReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/1]";
+
+                if (plank_cound >= 2 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[4].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[4].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        //Floor
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[5] != null && requiredItems[6] != null)
+            {
+                Transform floorReq = requiredItems[6].transform;
+                floorReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/1]";
+
+                if (plank_cound >= 2 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[5].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[5].gameObject.SetActive(false);
+                }
             }
         }
     }

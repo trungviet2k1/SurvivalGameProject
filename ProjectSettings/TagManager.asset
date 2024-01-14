@@ -6,13 +6,20 @@ TagManager:
   tags:
   - Stone
   - Animal
-  - Plane
-  - Tree
   - ItemSlot
   - PickAble
   - QuickSlot
   - Log
   - SpareBagSlot
+  - Ground
+  - Plant
+  - PlacedFoundation
+  - Ghost
+  - ActiveConstructable
+  - Tree
+  - WallGhost
+  - PlacedWall
+  - PlacedFloor
   layers:
   - Default
   - TransparentFX

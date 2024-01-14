@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : MonoBehaviour, IPointerClickHandler
 {
     public static InventorySystem Instance { get; set; }
 
@@ -45,6 +46,15 @@ public class InventorySystem : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && !SpareBagSystem.Instance.IsItemInSpareBag(gameObject))
+        {
+            SpareBagSystem.Instance.TransferToSpareBag(gameObject);
+            CraftingSystem.Instance.RefreshNeedItems();
+        }
+    }
+
     private void PopulateSlotList()
     {
         foreach (Transform child in inventoryScreenUI.transform)
@@ -58,7 +68,7 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isOpen && !ConstructionManager.Instance.inConstrucionMode)
         {
             inventoryScreenUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -192,7 +202,7 @@ public class InventorySystem : MonoBehaviour
                 string str2 = "(Clone)";
                 string result = name.Replace(str2, "");
                 itemList.Add(result);
-            }            
+            }
         }
     }
 }

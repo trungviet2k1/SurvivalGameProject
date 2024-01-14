@@ -19,6 +19,7 @@ public class SpareBagSystem : MonoBehaviour
 
     [HideInInspector] public bool isSpareBagOpen;
     Button button;
+    private bool isItemInSpareBag;
 
     void Awake()
     {
@@ -83,6 +84,8 @@ public class SpareBagSystem : MonoBehaviour
             item.transform.SetParent(spareBagSlot.transform);
             item.transform.position = spareBagSlot.transform.position;
 
+            isItemInSpareBag = true;
+
             ReCalculateList();
             InventorySystem.Instance.ReCalculateList();
         }
@@ -97,6 +100,16 @@ public class SpareBagSystem : MonoBehaviour
                 alert.SetActive(false);
             });
         }
+    }
+
+    public bool IsItemInSpareBag()
+    {
+        return isItemInSpareBag;
+    }
+
+    public void SetItemNotInSpareBag()
+    {
+        isItemInSpareBag = false;
     }
 
     private GameObject FindNextEmptySpareBagSlot()
@@ -124,6 +137,11 @@ public class SpareBagSystem : MonoBehaviour
         }
 
         return emptySlot > 0;
+    }
+
+    public bool IsItemInSpareBag(GameObject item)
+    {
+        return item.transform.parent != null && item.transform.parent.CompareTag("SpareBagSlot");
     }
 
     public void ReCalculateList()

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
@@ -52,8 +52,11 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            SpareBagSystem.Instance.TransferToSpareBag(gameObject);
-            CraftingSystem.Instance.RefreshNeedItems();
+            if (!SpareBagSystem.Instance.IsItemInSpareBag(gameObject))
+            {
+                SpareBagSystem.Instance.TransferToSpareBag(gameObject);
+                CraftingSystem.Instance.RefreshNeedItems();
+            }
         }
     }
 }
