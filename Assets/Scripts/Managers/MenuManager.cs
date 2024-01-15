@@ -56,11 +56,16 @@ public class MenuManager : MonoBehaviour
             if (CraftingSystem.Instance.isOpen == false && InventorySystem.Instance.isOpen == false)
             {
                 Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false; 
+                Cursor.visible = false;
             }
 
             SelectionManager.Instance.EnableSelection();
             SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
         }
+    }
+
+    public void TempSaveGame()
+    {
+        SaveManager.Instance.SaveGame();
     }
 }

@@ -149,7 +149,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     craftedButton[0].gameObject.SetActive(false);
-                } 
+                }
             }
         }
 
@@ -168,7 +168,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     craftedButton[1].gameObject.SetActive(false);
-                } 
+                }
             }
         }
 
@@ -187,7 +187,7 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     craftedButton[2].gameObject.SetActive(false);
-                } 
+                }
             }
         }
 
