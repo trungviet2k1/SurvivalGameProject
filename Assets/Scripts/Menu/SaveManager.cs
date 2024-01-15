@@ -1,6 +1,8 @@
+﻿using System;
 using System.Collections;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -196,29 +198,23 @@ public class SaveManager : MonoBehaviour
     public void SaveGameDataToJSonFile(AllGameData gameData)
     {
         string json = JsonUtility.ToJson(gameData);
+        string encryptedJson = Encrypt(json);
         using (StreamWriter writer = new StreamWriter(jsonPathProject))
         {
-            writer.WriteLine(json);
+            writer.WriteLine(encryptedJson);
         }
         print("Saved Game to Json file at: " + jsonPathProject);
     }
 
     public AllGameData LoadGameDataFromJSonFile()
     {
-        if (File.Exists(jsonPathProject))
+        using (StreamReader reader = new StreamReader(jsonPathProject))
         {
-            using (StreamReader reader = new StreamReader(jsonPathProject))
-            {
-                string json = reader.ReadToEnd();
-                AllGameData data = JsonUtility.FromJson<AllGameData>(json);
-                print("Loaded Game from Json file at: " + jsonPathProject);
-                return data;
-            }
-        }
-        else
-        {
-            print("File does not exist at: " + jsonPathProject);
-            return null;
+            string encryptedJson = reader.ReadToEnd();
+            string json = Decrypt(encryptedJson);
+            AllGameData data = JsonUtility.FromJson<AllGameData>(json);
+            print("Loaded Game from Json file at: " + jsonPathProject);
+            return data;
         }
     }
 
@@ -253,6 +249,38 @@ public class SaveManager : MonoBehaviour
         return JsonUtility.FromJson<VolumeSettings>(PlayerPrefs.GetString("Volume"));
     }
     #endregion
+
+    #endregion
+
+    #region || --- EncryptionDecryption --- ||
+
+    private readonly string encryptionKey = "1234567";
+
+    private string Encrypt(string jsonString)
+    {
+        byte[] data = Encoding.UTF8.GetBytes(jsonString);
+        byte[] key = Encoding.UTF8.GetBytes(encryptionKey);
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            data[i] = (byte)(data[i] ^ key[i % key.Length]);
+        }
+
+        return Convert.ToBase64String(data);
+    }
+
+    private string Decrypt(string encryptedString)
+    {
+        byte[] data = Convert.FromBase64String(encryptedString);
+        byte[] key = Encoding.UTF8.GetBytes(encryptionKey);
+
+        for (int i = 0; i < data.Length; i++)
+        {
+            data[i] = (byte)(data[i] ^ key[i % key.Length]);
+        }
+
+        return Encoding.UTF8.GetString(data);
+    }
 
     #endregion
 }
