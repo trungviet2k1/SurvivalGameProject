@@ -24,11 +24,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isMenuOpen)
@@ -62,10 +57,5 @@ public class MenuManager : MonoBehaviour
             SelectionManager.Instance.EnableSelection();
             SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
         }
-    }
-
-    public void TempSaveGame()
-    {
-        SaveManager.Instance.SaveGame();
     }
 }

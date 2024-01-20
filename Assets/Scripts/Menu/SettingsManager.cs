@@ -58,8 +58,6 @@ public class SettingsManager : MonoBehaviour
         masterSlider.value = volumeSettings.master;
         musicSlider.value = volumeSettings.music;
         effectsSlider.value = volumeSettings.effects;
-
-        print("Volume Settings are Load");
     }
 
     void Update()
