@@ -10,10 +10,11 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
 
     [Header("Inventory")]
     public GameObject inventoryScreenUI;
-    public List<GameObject> slotList = new List<GameObject>();
+    public List<GameObject> slotList = new();
 
     [Header("List Items")]
-    public List<string> itemList = new List<string>();
+    public List<string> itemList = new();
+    public List<string> itemPickedup;
 
     [Header("Item Information")]
     public GameObject ItemInfoUI;
@@ -94,7 +95,11 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
 
     public void AddToInventory(string itemName)
     {
-        SoundManager.Instance.PlaySound(SoundManager.Instance.pickUpItemSound);
+        if (SaveManager.Instance.isLoading == false)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.pickUpItemSound);
+        }
+
         whatSlotToEquip = FindNextEmptySlot();
 
         itemToAdd = Instantiate(Resources.Load<GameObject>(itemName), whatSlotToEquip.transform.position, whatSlotToEquip.transform.rotation);
