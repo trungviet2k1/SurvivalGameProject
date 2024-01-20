@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,7 +49,23 @@ public class SelectionManager : MonoBehaviour
         {
             var selectionTransform = hit.transform;
 
-            InteractableObject interacable = selectionTransform.GetComponent<InteractableObject>();
+            Animal animal = selectionTransform.GetComponent<Animal>();
+            if (animal && animal.playerInRange)
+            {
+                interaction_Text.text = animal.animalName;
+                interaction_info_UI.SetActive(true);
+
+                if (Input.GetMouseButtonDown(0) && EquipSystem.Instance.IsHoldingWeapon())
+                {
+                    StartCoroutine(DealDamageTo(animal, 0.3f, EquipSystem.Instance.GetWeaponDamage()));
+                }
+            }
+            else
+            {
+                interaction_Text.text = "";
+                interaction_info_UI.SetActive(false);
+            }
+
             ChoppableTree choppeableTree = selectionTransform.GetComponent<ChoppableTree>();
 
             if (choppeableTree && choppeableTree.playerInRange)
@@ -66,12 +84,19 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
+            InteractableObject interacable = selectionTransform.GetComponent<InteractableObject>();
+
             if (interacable && interacable.playerInRange)
             {
                 onTarget = true;
                 selectedObject = interacable.gameObject;
                 interaction_Text.text = interacable.GetItemName();
                 interaction_info_UI.SetActive(true);
+
+                centerDotImage.gameObject.SetActive(false);
+                handIcon.gameObject.SetActive(true);
+
+                handIsVisible = true;
 
 
                 if (interacable.CompareTag("PickAble"))
@@ -90,9 +115,6 @@ public class SelectionManager : MonoBehaviour
             else
             {
                 onTarget = false;
-                interaction_info_UI.SetActive(false);
-                centerDotImage.gameObject.SetActive(true);
-                handIcon.gameObject.SetActive(false);
                 handIsVisible = false;
             }
         }
@@ -104,6 +126,12 @@ public class SelectionManager : MonoBehaviour
             handIcon.gameObject.SetActive(false);
             handIsVisible = false;
         }
+    }
+
+    IEnumerator DealDamageTo(Animal animal, float delay, int damage)
+    {
+        yield return new WaitForSeconds(delay);
+        animal.TakeDamage(damage);
     }
 
     public void DisableSelection()

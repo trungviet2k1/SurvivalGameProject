@@ -727,7 +727,8 @@ GameObject:
   - component: {fileID: 1339155074795384443}
   - component: {fileID: 3706619622273672215}
   - component: {fileID: 4340297685987063922}
-  - component: {fileID: 1153709817492936681}
+  - component: {fileID: 7321016332324694502}
+  - component: {fileID: 2021825820457964578}
   m_Layer: 0
   m_Name: WhiteRabbit
   m_TagString: Animal
@@ -858,8 +859,7 @@ MonoBehaviour:
   moveSpeed: 2
   walkCounter: 0
   waitCounter: 0
-  isWalking: 0
---- !u!114 &1153709817492936681
+--- !u!114 &7321016332324694502
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -868,11 +868,113 @@ MonoBehaviour:
   m_GameObject: {fileID: 1588090451174212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f41ba3f9761b7c44f8d53a6fcf23ba01, type: 3}
+  m_Script: {fileID: 11500000, guid: 163d47be47acbbc44bb59acb2a529099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animalName: Small Rabbit
   playerInRange: 0
-  ItemName: Small Rabbit
+  currentHealth: 0
+  maxHealth: 40
+  soundChannel: {fileID: 2021825820457964578}
+  rabbitHitAndScream: {fileID: 8300000, guid: 0f292135613c4b34faf22f0ed1cf7658, type: 3}
+  rabbitHitAndDie: {fileID: 8300000, guid: b172579b63b6f784b88200321aafe100, type: 3}
+  thisAnimalType: 0
+--- !u!82 &2021825820457964578
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588090451174212}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0
