@@ -115,6 +115,8 @@ public class SelectionManager : MonoBehaviour
             else
             {
                 onTarget = false;
+                centerDotImage.gameObject.SetActive(true);              
+                handIcon.gameObject.SetActive(false);
                 handIsVisible = false;
             }
         }
