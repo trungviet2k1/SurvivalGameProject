@@ -52,9 +52,11 @@ public class SaveManager : MonoBehaviour
     #region ||--- Saving --- ||
     public void SaveGame(int slotNumber)
     {
-        AllGameData data = new();
-        data.playerData = GetPlayerData();
-        data.environmentData = GetEnvironmentData();
+        AllGameData data = new()
+        {
+            playerData = GetPlayerData(),
+            environmentData = GetEnvironmentData()
+        };
         SavingTypeSwitch(data, slotNumber);
     }
 

@@ -22,40 +22,43 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
+        if (MenuManager.Instance.isMenuOpen == false)
         {
-            velocity.y = -2f;
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+            if (isGrounded && velocity.y < 0)
+            {
+                velocity.y = -2f;
+            }
+
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+
+            Vector3 move = transform.right * x + transform.forward * z;
+
+            controller.Move(speed * Time.deltaTime * move);
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+
+            isMoving = (lastPosition != gameObject.transform.position && isGrounded);
+            if (isMoving)
+            {
+                isMoving = true;
+                SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
+            }
+            else
+            {
+                isMoving = false;
+                SoundManager.Instance.grassWalkSound.Stop();
+            }
+
+            lastPosition = gameObject.transform.position; 
         }
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(speed * Time.deltaTime * move);
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-
-        isMoving = (lastPosition != gameObject.transform.position && isGrounded);
-        if (isMoving)
-        {
-            isMoving = true;
-            SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
-        }
-        else
-        {
-            isMoving = false;
-            SoundManager.Instance.grassWalkSound.Stop();
-        }
-
-        lastPosition = gameObject.transform.position;
     }
 }

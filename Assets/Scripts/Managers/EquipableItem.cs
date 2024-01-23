@@ -1,11 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent (typeof(Animator))]
+[RequireComponent(typeof(Animator))]
 public class EquipableItem : MonoBehaviour
 {
     public Animator anim;
     private bool swingWait = false;
+    private bool soundPlayed = false;
 
     void Start()
     {
@@ -14,18 +15,28 @@ public class EquipableItem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) 
+        if (Input.GetMouseButtonDown(0)
             && InventorySystem.Instance.isOpen == false
             && CraftingSystem.Instance.isOpen == false
+            && MenuManager.Instance.isMenuOpen == false
             && SelectionManager.Instance.handIsVisible == false
             && swingWait == false
-            && !ConstructionManager.Instance.inConstrucionMode)
+            && !ConstructionManager.Instance.inConstrucionMode
+            && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
-            swingWait = true;
             StartCoroutine(SwingSoundDelay());
             anim.SetTrigger("Hit");
             StartCoroutine(NewSwingDelay());
-            swingWait = false;
+            soundPlayed = false;
+        }
+    }
+
+    void OnHitAnimationComplete()
+    {
+        if (SelectionManager.Instance.selectedTree != null && !soundPlayed)
+        {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
+            soundPlayed = true;
         }
     }
 
@@ -35,20 +46,20 @@ public class EquipableItem : MonoBehaviour
 
         if (selectedTree != null)
         {
-            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
             selectedTree.GetComponent<ChoppableTree>().GetHit();
         }
     }
 
     IEnumerator SwingSoundDelay()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
+        soundPlayed = false;
         SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
     }
 
     IEnumerator NewSwingDelay()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(3f);
         GetHit();
     }
 }

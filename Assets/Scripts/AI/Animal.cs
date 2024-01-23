@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Animal : MonoBehaviour
@@ -13,8 +14,12 @@ public class Animal : MonoBehaviour
     [SerializeField] AudioClip rabbitHitAndScream;
     [SerializeField] AudioClip rabbitHitAndDie;
 
+    [Header("Particle System")]
+    [SerializeField] ParticleSystem bloodSplashParticalSystem;
+    public GameObject bloodPuddle;
+
     private Animator anim;
-    public bool isDead;
+    [HideInInspector] public bool isDead;
 
     enum AnimalType
     {
@@ -23,6 +28,7 @@ public class Animal : MonoBehaviour
         Snake
     }
 
+    [Header("Animals")]
     [SerializeField] AnimalType thisAnimalType;
 
     void Start()
@@ -37,12 +43,15 @@ public class Animal : MonoBehaviour
         {
             currentHealth -= damage;
 
+            bloodSplashParticalSystem.Play();
+
             if (currentHealth <= 0)
             {
                 PlayDyingSound();
                 anim.SetTrigger("isDead");
                 GetComponent<AIMovement>().enabled = false;
 
+                StartCoroutine(PuddleDelay());
                 isDead = true;
             }
             else
@@ -50,6 +59,12 @@ public class Animal : MonoBehaviour
                 PlayHitSound();
             } 
         }
+    }
+
+    IEnumerator PuddleDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        bloodPuddle.SetActive(true);
     }
 
     private void PlayDyingSound()

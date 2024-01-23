@@ -17,6 +17,7 @@ public class ChoppableTree : MonoBehaviour
 
     [HideInInspector] public bool playerInRange;
     [HideInInspector] public bool canBeChopped;
+    private bool isBeingChopped = false;
 
     void Start()
     {
@@ -42,11 +43,15 @@ public class ChoppableTree : MonoBehaviour
 
     public void GetHit()
     {
-        StartCoroutine(Hit());
+        if (!isBeingChopped && canBeChopped)
+        {
+            StartCoroutine(Hit());
+        }
     }
 
     public IEnumerator Hit()
     {
+        isBeingChopped = true;
         yield return new WaitForSeconds(0.6f);
         anim.SetTrigger("Shake");
         treeHealth -= 2;
@@ -57,6 +62,8 @@ public class ChoppableTree : MonoBehaviour
         {
             TreeIsDead();
         }
+
+        isBeingChopped = false;
     }
 
     void TreeIsDead()
