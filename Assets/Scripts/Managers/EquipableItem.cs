@@ -1,12 +1,12 @@
 ﻿using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class EquipableItem : MonoBehaviour
 {
     public Animator anim;
-    private bool swingWait = false;
-    private bool soundPlayed = false;
+    [HideInInspector] public bool swingWait = false;
 
     void Start()
     {
@@ -22,21 +22,12 @@ public class EquipableItem : MonoBehaviour
             && SelectionManager.Instance.handIsVisible == false
             && swingWait == false
             && !ConstructionManager.Instance.inConstrucionMode
-            && !anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+            )
         {
+            swingWait = true;
             StartCoroutine(SwingSoundDelay());
             anim.SetTrigger("Hit");
             StartCoroutine(NewSwingDelay());
-            soundPlayed = false;
-        }
-    }
-
-    void OnHitAnimationComplete()
-    {
-        if (SelectionManager.Instance.selectedTree != null && !soundPlayed)
-        {
-            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
-            soundPlayed = true;
         }
     }
 
@@ -46,6 +37,7 @@ public class EquipableItem : MonoBehaviour
 
         if (selectedTree != null)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
             selectedTree.GetComponent<ChoppableTree>().GetHit();
         }
     }
@@ -53,13 +45,12 @@ public class EquipableItem : MonoBehaviour
     IEnumerator SwingSoundDelay()
     {
         yield return new WaitForSeconds(0.3f);
-        soundPlayed = false;
         SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
     }
 
     IEnumerator NewSwingDelay()
     {
-        yield return new WaitForSeconds(3f);
-        GetHit();
+        yield return new WaitForSeconds(1f);
+        swingWait = false;
     }
 }

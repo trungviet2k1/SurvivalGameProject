@@ -273,7 +273,6 @@ public class SaveManager : MonoBehaviour
         {
             writer.WriteLine(json);
         }
-        print("Saved Game to Json file at: " + jsonPathProject + fileName + slotNumber + ".json");
     }
 
     public AllGameData LoadGameDataFromJSonFile(int slotNumber)
@@ -284,7 +283,6 @@ public class SaveManager : MonoBehaviour
             //string json = Decrypt(encryptedJson);
             string json = reader.ReadToEnd();
             AllGameData data = JsonUtility.FromJson<AllGameData>(json);
-            print("Loaded Game from Json file at: " + jsonPathProject + fileName + slotNumber + ".json");
             return data;
         }
     }

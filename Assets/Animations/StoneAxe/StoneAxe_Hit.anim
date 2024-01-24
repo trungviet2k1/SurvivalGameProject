@@ -480,7 +480,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.5
-    functionName: OnHitAnimationComplete
+    functionName: GetHit
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

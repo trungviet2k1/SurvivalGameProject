@@ -241,4 +241,16 @@ public class EquipSystem : MonoBehaviour
             return 0;
         }
     }
+
+    internal bool IsThereASwingLock()
+    {
+        if (selectedItemModel && selectedItemModel.GetComponent<EquipableItem>())
+        {
+            return selectedItemModel.GetComponent<EquipableItem>().swingWait;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

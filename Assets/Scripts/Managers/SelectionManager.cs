@@ -124,7 +124,7 @@ public class SelectionManager : MonoBehaviour
                     handIcon.gameObject.SetActive(false);
                     handIsVisible = false;
 
-                    if (Input.GetMouseButtonDown(0) && EquipSystem.Instance.IsHoldingWeapon())
+                    if (Input.GetMouseButtonDown(0) && EquipSystem.Instance.IsHoldingWeapon() && EquipSystem.Instance.IsThereASwingLock() == false)
                     {
                         StartCoroutine(DealDamageTo(animal, 0.3f, EquipSystem.Instance.GetWeaponDamage()));
                     }
