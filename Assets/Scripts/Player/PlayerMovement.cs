@@ -2,6 +2,8 @@
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance { get; set; }
+
     [Header("Run Speed")]
     public CharacterController controller;
     public float speed = 12f;
@@ -10,15 +12,29 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f * 2;
 
     [Header("Jump Activity")]
-    public float jumpHeight = 3f;
+    public float jumpHeight = 2.5f;
+    public float jumpForwardForce = 4f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
     private Vector3 lastPosition = new(0f, 0f, 0f);
     Vector3 velocity;
-    bool isGrounded;
     bool isMoving;
+
+    [HideInInspector] public bool isGrounded;
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Update()
     {
@@ -40,7 +56,15 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                if (isMoving)
+                {
+                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                    controller.Move(transform.forward * jumpForwardForce * Time.deltaTime);
+                }
+                else
+                {
+                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                }
             }
 
             velocity.y += gravity * Time.deltaTime;

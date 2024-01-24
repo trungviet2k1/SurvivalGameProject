@@ -106,6 +106,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Oak_tree1
       objectReference: {fileID: 0}
+    - target: {fileID: 7198459702233732574, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 87
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

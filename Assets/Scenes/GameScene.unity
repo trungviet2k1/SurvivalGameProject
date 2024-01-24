@@ -10494,10 +10494,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1809974783}
     m_Modifications:
-    - target: {fileID: 81466437807382045, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1725831375810041158, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
       propertyPath: m_LocalPosition.x
       value: 167.2
@@ -10541,10 +10537,6 @@ PrefabInstance:
     - target: {fileID: 1776704816402940388, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
       propertyPath: m_Name
       value: OakTreeParent
-      objectReference: {fileID: 0}
-    - target: {fileID: 6349808166105858279, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 87
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11540,6 +11532,8 @@ MonoBehaviour:
   maxHealth: 100
   maxCalories: 2000
   maxHydrationPercent: 100
+  littleBloodLoss: 20
+  manyBloodLoss: 35
   currentHealth: 0
   currentCalories: 0
   currentHydrationPercent: 0
@@ -13311,6 +13305,10 @@ PrefabInstance:
     - target: {fileID: 4677745771901032, guid: ed9780d5a5111a74b9c245db9c5c2256, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950718774298751973, guid: ed9780d5a5111a74b9c245db9c5c2256, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18284,6 +18282,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3615784112657239368, guid: 3dd3a96194caa4c45983651c3ccca94e, type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1898742099}
+    - target: {fileID: 3615784112657239368, guid: 3dd3a96194caa4c45983651c3ccca94e, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1898742100}
     - target: {fileID: 7169288207341174795, guid: 3dd3a96194caa4c45983651c3ccca94e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -18296,6 +18302,11 @@ PrefabInstance:
 --- !u!4 &1898742099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1276984528055038806, guid: 3dd3a96194caa4c45983651c3ccca94e, type: 3}
+  m_PrefabInstance: {fileID: 1898742098}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1898742100 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3533873675413246994, guid: 3dd3a96194caa4c45983651c3ccca94e, type: 3}
   m_PrefabInstance: {fileID: 1898742098}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1901374659
@@ -20718,25 +20729,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9004896307157635421, guid: e1bbebf84dc571349a47b93b3da1291f, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9004896307157635421, guid: e1bbebf84dc571349a47b93b3da1291f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9127906956317618867, guid: e1bbebf84dc571349a47b93b3da1291f, type: 3}
       propertyPath: m_Name
       value: BirchTree2Parent
-      objectReference: {fileID: 0}
-    - target: {fileID: 9140351957864943135, guid: e1bbebf84dc571349a47b93b3da1291f, type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9140351957864943135, guid: e1bbebf84dc571349a47b93b3da1291f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20751,6 +20746,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1809974783}
     m_Modifications:
+    - target: {fileID: 2057555192324790186, guid: e92e8d74e0b06f54bb412019468275e8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 413a94560e540a34b8e573686225293f, type: 2}
     - target: {fileID: 5028981812086803056, guid: e92e8d74e0b06f54bb412019468275e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -253
