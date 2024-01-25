@@ -4,8 +4,9 @@ public class AIMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     public float moveSpeed = 0.2f;
-    public float walkCounter;
-    public float waitCounter;
+
+    [HideInInspector] public float walkCounter;
+    [HideInInspector] public float waitCounter;
 
     Animator anim;
     Vector3 stopPosition;

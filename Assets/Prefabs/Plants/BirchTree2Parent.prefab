@@ -110,6 +110,30 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7882177626674489919, guid: cefc5feb354724544ba2da304058dc37, type: 3}
+      propertyPath: m_Size.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882177626674489919, guid: cefc5feb354724544ba2da304058dc37, type: 3}
+      propertyPath: m_Size.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7882177626674489919, guid: cefc5feb354724544ba2da304058dc37, type: 3}
+      propertyPath: m_Size.z
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809159913857685161, guid: cefc5feb354724544ba2da304058dc37, type: 3}
+      propertyPath: m_Radius
+      value: 2.1674194
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809159913857685161, guid: cefc5feb354724544ba2da304058dc37, type: 3}
+      propertyPath: m_Center.x
+      value: -0.019470215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809159913857685161, guid: cefc5feb354724544ba2da304058dc37, type: 3}
+      propertyPath: m_Center.z
+      value: 0.01999998
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
