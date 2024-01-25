@@ -802,9 +802,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 96
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 80
+  m_CollisionDetection: 3
 --- !u!65 &-5028834824729522184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -824,8 +824,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3377889, y: 0.3678447, z: 0.8764242}
-  m_Center: {x: 0.0052591963, y: 0.18153375, z: 0.11391195}
+  m_Size: {x: 0.44055176, y: 0.5638186, z: 0.8764242}
+  m_Center: {x: 0.0007324219, y: 0.2795207, z: 0.11391195}
 --- !u!65 &-6897303800641837132
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -845,7 +845,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.5, y: 1.0369518, z: 6.5}
+  m_Size: {x: 8, y: 2, z: 8}
   m_Center: {x: 0.0016377767, y: 0.53986156, z: 0.06892904}
 --- !u!114 &4371124762496830489
 MonoBehaviour:
@@ -860,6 +860,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2.5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 128
   walkCounter: 0
   waitCounter: 0
 --- !u!114 &6664600609929694491
@@ -1464,6 +1467,10 @@ PrefabInstance:
     - target: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r

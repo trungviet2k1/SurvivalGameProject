@@ -35,35 +35,25 @@ public class AIMovement : MonoBehaviour
             anim.SetBool("isRunning", true);
             walkCounter -= Time.deltaTime;
 
-            Vector3 movement = Vector3.zero;
-            float yAdjustment = 0f;
-
             switch (walkDirection)
             {
                 case 0:
                     transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
-                    movement += moveSpeed * Time.deltaTime * transform.forward;
+                    transform.localPosition += moveSpeed * Time.deltaTime * transform.forward;
                     break;
                 case 1:
                     transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
-                    movement += moveSpeed * Time.deltaTime * transform.forward;
+                    transform.localPosition += moveSpeed * Time.deltaTime * transform.forward;
                     break;
                 case 2:
                     transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
-                    movement += moveSpeed * Time.deltaTime * transform.forward;
+                    transform.localPosition += moveSpeed * Time.deltaTime * transform.forward;
                     break;
                 case 3:
                     transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
-                    movement += moveSpeed * Time.deltaTime * transform.forward;
+                    transform.localPosition += moveSpeed * Time.deltaTime * transform.forward;
                     break;
             }
-
-            if (Physics.Raycast(transform.position, -Vector3.up, out RaycastHit hit, 1.0f))
-            {
-                yAdjustment = hit.point.y - transform.position.y;
-            }
-
-            MoveCharacter(movement, yAdjustment);
 
             if (walkCounter <= 0)
             {
@@ -83,12 +73,6 @@ public class AIMovement : MonoBehaviour
                 ChooseDirection();
             }
         }
-    }
-
-    void MoveCharacter(Vector3 movement, float yAdjustment)
-    {
-        Vector3 adjustedMovement = moveSpeed * Time.deltaTime * new Vector3(movement.x, 0f, movement.z).normalized;
-        transform.position += new Vector3(adjustedMovement.x, yAdjustment, adjustedMovement.z);
     }
 
     public void ChooseDirection()
