@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7161187393289303274}
   m_Layer: 0
   m_Name: DeciduousTreeParent
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,14 +62,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5028981812086803056}
     m_Modifications:
+    - target: {fileID: 2610879364841011734, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
+      propertyPath: m_TagString
+      value: Plant
+      objectReference: {fileID: 0}
     - target: {fileID: 5601666846413372832, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
       propertyPath: m_Name
       value: Deciduous_tree1
       objectReference: {fileID: 0}
+    - target: {fileID: 5601666846413372832, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6088768269351150134, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6240a66c3b9d13e4993f7a6e90176da2, type: 2}
+      objectReference: {fileID: 2100000, guid: 413a94560e540a34b8e573686225293f, type: 2}
     - target: {fileID: 6684261082700960729, guid: 8bd113bb8eb284342afe12a7c3f7ad23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

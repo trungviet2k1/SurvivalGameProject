@@ -5,6 +5,9 @@ public class EnvironmentManager : MonoBehaviour
     public static EnvironmentManager Instance { get; set; }
 
     public GameObject allItems;
+    public GameObject allTrees;
+    public GameObject allAnimals;
+    public GameObject placeable;
 
     private void Awake()
     {

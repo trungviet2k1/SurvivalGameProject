@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 61413157423976954}
   m_Layer: 0
   m_Name: OakTreeParent
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -62,6 +62,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1725831375810041158}
     m_Modifications:
+    - target: {fileID: 4240263691463183140, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
+      propertyPath: m_TagString
+      value: Plant
+      objectReference: {fileID: 0}
     - target: {fileID: 5505950069431072149, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -105,6 +109,10 @@ PrefabInstance:
     - target: {fileID: 7198459702233732574, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
       propertyPath: m_Name
       value: Oak_tree1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7198459702233732574, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7198459702233732574, guid: 6c7f6f87cbcd5e2418dd004001b0b26e, type: 3}
       propertyPath: m_StaticEditorFlags
