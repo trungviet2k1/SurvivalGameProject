@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c53a4efa255a59a41b0f3c52ed768711, type: 2}
+  - {fileID: 2100000, guid: ecb4ea0621cc9d648b888a1e3385a88e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4904695894990029346}
   m_Layer: 0
-  m_Name: OakStump
+  m_Name: DeciduousTreeStump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3d7990ed7ae4d9444bdf8fda673fa6d4, type: 2}
+  - {fileID: 2100000, guid: 996c10e96d7784e4fa7c78483ce591b3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

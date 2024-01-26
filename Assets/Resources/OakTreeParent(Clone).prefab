@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4222100177693403343}
   - component: {fileID: 4529760485256214730}
   m_Layer: 0
-  m_Name: OakTreeParent (Clone)
+  m_Name: OakTreeParent(Clone)
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

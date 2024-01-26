@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using UnityEngine;
@@ -65,32 +66,39 @@ public class SaveManager : MonoBehaviour
     {
         List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
 
-        List<TreeData> treeToSave = new();
+        Dictionary<string, List<TreeData>> treeDataDict = new Dictionary<string, List<TreeData>>();
 
         foreach (Transform tree in EnvironmentManager.Instance.allTrees.transform)
         {
-            if (tree.CompareTag("Plant"))
-            {
-                var td = new TreeData
-                {
-                    name = "BirchTree2Parent",
-                    position = tree.position,
-                    rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
-                };
+            string treeType = tree.CompareTag("Plant") ? "Parent" : "Stump";
+            string treeName = "";
 
-                treeToSave.Add(td);
-            }
-            else
+            if (tree.name.Contains("Birch"))
             {
-                var td = new TreeData
-                {
-                    name = "BirchStump",
-                    position = tree.position,
-                    rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
-                };
-
-                treeToSave.Add(td);
+                treeName = "BirchTree2" + treeType;
             }
+            else if (tree.name.Contains("Oak"))
+            {
+                treeName = "OakTree" + treeType;
+            }
+            else if (tree.name.Contains("Deciduous"))
+            {
+                treeName = "DeciduousTree" + treeType;
+            }
+
+            if (!treeDataDict.ContainsKey(treeName))
+            {
+                treeDataDict[treeName] = new List<TreeData>();
+            }
+
+            var td = new TreeData
+            {
+                name = treeName,
+                position = tree.position,
+                rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
+            };
+
+            treeDataDict[treeName].Add(td);
         }
 
         List<string> allAnimals = new();
@@ -117,6 +125,9 @@ public class SaveManager : MonoBehaviour
                 allStorage.Add(sd);
             }
         }
+
+        List<TreeData> treeToSave = treeDataDict.Values.SelectMany(x => x).ToList();
+
         return new EnvironmentData(itemsPickedup, treeToSave, allAnimals, allStorage);
     }
 
@@ -124,35 +135,42 @@ public class SaveManager : MonoBehaviour
     {
         List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
 
-        List<TreeData> treeSave = new();
+        Dictionary<string, List<TreeGeneratorData>> treeDataDict = new Dictionary<string, List<TreeGeneratorData>>();
 
         foreach (Transform tree in EnvironmentGeneratorManager.Instance.allTrees.transform)
         {
-            if (tree.CompareTag("Plant"))
-            {
-                var td = new TreeData
-                {
-                    name = "OakTreeParent (Clone)",
-                    position = tree.position,
-                    rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
-                };
+            string treeType = tree.CompareTag("Plant") ? "Parent(Clone)" : "Stump";
+            string treeName = "";
 
-                treeSave.Add(td);
-            }
-            else
+            if (tree.name.Contains("Birch"))
             {
-                var td = new TreeData
-                {
-                    name = "OakStump",
-                    position = tree.position,
-                    rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
-                };
-
-                treeSave.Add(td);
+                treeName = "BirchTree2" + treeType;
             }
+            else if (tree.name.Contains("Oak"))
+            {
+                treeName = "OakTree" + treeType;
+            }
+            else if (tree.name.Contains("Deciduous"))
+            {
+                treeName = "DeciduousTree" + treeType;
+            }
+
+            if (!treeDataDict.ContainsKey(treeName))
+            {
+                treeDataDict[treeName] = new List<TreeGeneratorData>();
+            }
+
+            var td = new TreeGeneratorData
+            {
+                name = treeName,
+                position = tree.position,
+                rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
+            };
+
+            treeDataDict[treeName].Add(td);
         }
 
-        List<string> listAllAnimals = new();
+        List<string> listAllAnimals = new List<string>();
         foreach (Transform animalType in EnvironmentGeneratorManager.Instance.allAnimals.transform)
         {
             foreach (Transform animal in animalType.transform)
@@ -160,6 +178,8 @@ public class SaveManager : MonoBehaviour
                 listAllAnimals.Add(animal.gameObject.name);
             }
         }
+
+        List<TreeGeneratorData> treeSave = treeDataDict.Values.SelectMany(x => x).ToList();
 
         return new EnvironmentGeneratorData(itemsPickedup, treeSave, listAllAnimals);
     }
@@ -250,7 +270,7 @@ public class SaveManager : MonoBehaviour
     private void SetEnvironmentGeneratorData(EnvironmentGeneratorData environmentGeneratorData)
     {
         // ======= Pick up items ======= //
-        foreach (Transform itemType in EnvironmentManager.Instance.allItems.transform)
+        foreach (Transform itemType in EnvironmentGeneratorManager.Instance.allStones.transform)
         {
             foreach (Transform item in itemType.transform)
             {
@@ -264,16 +284,23 @@ public class SaveManager : MonoBehaviour
         InventorySystem.Instance.itemPickedup = environmentGeneratorData.pickupItem;
 
         // ======= Trees ======= //
-        //Remove all default trees
+        // Remove all default trees
         foreach (Transform tree in EnvironmentGeneratorManager.Instance.allTrees.transform)
         {
             Destroy(tree.gameObject);
         }
 
         // ======= Add Trees and Stump ======= //
-        foreach (TreeData tree in environmentGeneratorData.treeData)
+        foreach (TreeGeneratorData tree in environmentGeneratorData.treeData)
         {
-            var treePrefab = Instantiate(Resources.Load<GameObject>(tree.name),
+            string treePrefabName = tree.name;
+
+            if (treePrefabName.Contains("(Clone)"))
+            {
+                treePrefabName = treePrefabName.Replace("(Clone)", "");
+            }
+
+            var treePrefab = Instantiate(Resources.Load<GameObject>(treePrefabName),
                 new Vector3(tree.position.x, tree.position.y, tree.position.z),
                 Quaternion.Euler(tree.rotation.x, tree.rotation.y, tree.rotation.z));
 
@@ -285,7 +312,7 @@ public class SaveManager : MonoBehaviour
         {
             foreach (Transform animal in animalType.transform)
             {
-                if (environmentGeneratorData.animals.Contains(animal.gameObject.name) == false)
+                if (!environmentGeneratorData.animals.Contains(animal.gameObject.name))
                 {
                     Destroy(animal.gameObject);
                 }
@@ -316,7 +343,7 @@ public class SaveManager : MonoBehaviour
             Destroy(tree.gameObject);
         }
 
-        // ======= Add Trees and Stump ======= //
+        // Add Trees and Stump
         foreach (TreeData tree in environmentData.treeData)
         {
             var treePrefab = Instantiate(Resources.Load<GameObject>(tree.name),
@@ -331,14 +358,21 @@ public class SaveManager : MonoBehaviour
         {
             foreach (Transform animal in animalType.transform)
             {
-                if (environmentData.animals.Contains(animal.gameObject.name) == false)
+                if (!environmentData.animals.Contains(animal.gameObject.name))
                 {
                     Destroy(animal.gameObject);
                 }
             }
         }
 
-        // Add storages boxes
+        // ======= Storage Boxes ======= //
+        foreach (Transform placeable in EnvironmentManager.Instance.placeable.transform)
+        {
+            if (placeable.gameObject.GetComponent<StorageBox>())
+            {
+                Destroy(placeable.gameObject);
+            }
+        }
 
         foreach (StorageData storage in environmentData.storage)
         {
