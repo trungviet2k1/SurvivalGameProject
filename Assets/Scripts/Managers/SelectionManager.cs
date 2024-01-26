@@ -109,6 +109,11 @@ public class SelectionManager : MonoBehaviour
                 interaction_info_UI.SetActive(true);
 
                 selectedStorageBox = storageBox.gameObject;
+
+                if (Input.GetKey(KeyCode.E))
+                {
+                    StorageSystem.Instance.OpenBox(storageBox);
+                }
             }
             else
             {

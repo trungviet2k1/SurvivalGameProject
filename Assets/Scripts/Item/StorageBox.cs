@@ -6,7 +6,7 @@ public class StorageBox : MonoBehaviour
     public bool playerInRange;
 
     [Header("List of Storage Box")]
-    public List<string> item;
+    public List<string> items;
 
     public enum BoxType
     {

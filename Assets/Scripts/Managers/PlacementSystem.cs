@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlacementSystem : MonoBehaviour
@@ -102,6 +103,12 @@ public class PlacementSystem : MonoBehaviour
         itemToBePlaced.GetComponent<PlaceableItem>().enabled = false;
 
         itemToBePlaced = null;
+        StartCoroutine(Delay());
+    }
+
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
         inPlacementMode = false;
     }
 
