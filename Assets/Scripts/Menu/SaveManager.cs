@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -56,7 +55,8 @@ public class SaveManager : MonoBehaviour
         AllGameData data = new()
         {
             playerData = GetPlayerData(),
-            environmentData = GetEnvironmentData()
+            environmentData = GetEnvironmentData(),
+            environmentGeneratorData = GetEnvironmentGeneratorData()
         };
         SavingTypeSwitch(data, slotNumber);
     }
@@ -84,7 +84,7 @@ public class SaveManager : MonoBehaviour
             {
                 var td = new TreeData
                 {
-                    name = "Stump",
+                    name = "BirchStump",
                     position = tree.position,
                     rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
                 };
@@ -118,6 +118,50 @@ public class SaveManager : MonoBehaviour
             }
         }
         return new EnvironmentData(itemsPickedup, treeToSave, allAnimals, allStorage);
+    }
+
+    private EnvironmentGeneratorData GetEnvironmentGeneratorData()
+    {
+        List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
+
+        List<TreeData> treeSave = new();
+
+        foreach (Transform tree in EnvironmentGeneratorManager.Instance.allTrees.transform)
+        {
+            if (tree.CompareTag("Plant"))
+            {
+                var td = new TreeData
+                {
+                    name = "OakTreeParent (Clone)",
+                    position = tree.position,
+                    rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
+                };
+
+                treeSave.Add(td);
+            }
+            else
+            {
+                var td = new TreeData
+                {
+                    name = "OakStump",
+                    position = tree.position,
+                    rotation = new Vector3(tree.rotation.x, tree.rotation.y, tree.rotation.z)
+                };
+
+                treeSave.Add(td);
+            }
+        }
+
+        List<string> listAllAnimals = new();
+        foreach (Transform animalType in EnvironmentGeneratorManager.Instance.allAnimals.transform)
+        {
+            foreach (Transform animal in animalType.transform)
+            {
+                listAllAnimals.Add(animal.gameObject.name);
+            }
+        }
+
+        return new EnvironmentGeneratorData(itemsPickedup, treeSave, listAllAnimals);
     }
 
     private PlayerData GetPlayerData()
@@ -196,10 +240,57 @@ public class SaveManager : MonoBehaviour
 
         //Environment Data
         SetEnvironmentData(LoadingTypeSwitch(slotNumber).environmentData);
+        SetEnvironmentGeneratorData(LoadingTypeSwitch(slotNumber).environmentGeneratorData);
 
         isLoading = false;
 
         DisableLoadingScreen();
+    }
+
+    private void SetEnvironmentGeneratorData(EnvironmentGeneratorData environmentGeneratorData)
+    {
+        // ======= Pick up items ======= //
+        foreach (Transform itemType in EnvironmentManager.Instance.allItems.transform)
+        {
+            foreach (Transform item in itemType.transform)
+            {
+                if (environmentGeneratorData.pickupItem.Contains(item.name))
+                {
+                    Destroy(item.gameObject);
+                }
+            }
+        }
+
+        InventorySystem.Instance.itemPickedup = environmentGeneratorData.pickupItem;
+
+        // ======= Trees ======= //
+        //Remove all default trees
+        foreach (Transform tree in EnvironmentGeneratorManager.Instance.allTrees.transform)
+        {
+            Destroy(tree.gameObject);
+        }
+
+        // ======= Add Trees and Stump ======= //
+        foreach (TreeData tree in environmentGeneratorData.treeData)
+        {
+            var treePrefab = Instantiate(Resources.Load<GameObject>(tree.name),
+                new Vector3(tree.position.x, tree.position.y, tree.position.z),
+                Quaternion.Euler(tree.rotation.x, tree.rotation.y, tree.rotation.z));
+
+            treePrefab.transform.SetParent(EnvironmentGeneratorManager.Instance.allTrees.transform);
+        }
+
+        // ======= Animals ======= //
+        foreach (Transform animalType in EnvironmentGeneratorManager.Instance.allAnimals.transform)
+        {
+            foreach (Transform animal in animalType.transform)
+            {
+                if (environmentGeneratorData.animals.Contains(animal.gameObject.name) == false)
+                {
+                    Destroy(animal.gameObject);
+                }
+            }
+        }
     }
 
     private void SetEnvironmentData(EnvironmentData environmentData)

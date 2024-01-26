@@ -5,5 +5,7 @@ public class AllGameData
 
     public EnvironmentData environmentData;
 
+    public EnvironmentGeneratorData environmentGeneratorData;
+
     //public ConstructionData constructionData;
 }

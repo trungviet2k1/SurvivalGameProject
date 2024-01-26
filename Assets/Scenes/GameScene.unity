@@ -13582,6 +13582,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotNumber: 1
   alertUI: {fileID: 1982630530}
+--- !u!1 &1028416301
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1028416302}
+  m_Layer: 0
+  m_Name: '[Animals]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1028416302
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028416301}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2068382552}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1032947317
 GameObject:
   m_ObjectHideFlags: 0
@@ -14060,6 +14091,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057443398}
   m_CullTransparentMesh: 1
+--- !u!1 &1070948566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070948567}
+  m_Layer: 0
+  m_Name: '[Plants]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070948567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070948566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2068382552}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075243756
 GameObject:
   m_ObjectHideFlags: 0
@@ -14443,16 +14505,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
---- !u!4 &1092423440 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1725831375810041158, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
-  m_PrefabInstance: {fileID: 1092423439}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1092423441 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1776704816402940388, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
-  m_PrefabInstance: {fileID: 1092423439}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1093968611
 GameObject:
   m_ObjectHideFlags: 0
@@ -20994,6 +21046,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8641798594956747945, guid: 325548e94549c7e4d86f589b21724e35, type: 3}
   m_PrefabInstance: {fileID: 3971862062844078982}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1641646177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1641646178}
+  m_Layer: 0
+  m_Name: '[Stones]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1641646178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641646177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2068382552}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1644005661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23793,9 +23876,9 @@ MonoBehaviour:
   allSpawnData:
   - prefab: {fileID: 3449750737380356002}
     amount: 100
-  - prefab: {fileID: 1092423441}
+  - prefab: {fileID: 1776704815346306795}
     amount: 120
-  - prefab: {fileID: 1975859538}
+  - prefab: {fileID: 349881944862527850}
     amount: 150
   - prefab: {fileID: 1866625719}
     amount: 5
@@ -23804,7 +23887,9 @@ MonoBehaviour:
   - prefab: {fileID: 904404273}
     amount: 10000
   terrain: {fileID: 3194327634678849534}
-  parent: {fileID: 2068382551}
+  plants: {fileID: 1070948566}
+  animals: {fileID: 1028416301}
+  stones: {fileID: 1641646177}
 --- !u!1 &1769147527
 GameObject:
   m_ObjectHideFlags: 0
@@ -24210,8 +24295,8 @@ Transform:
   m_Children:
   - {fileID: 4864110671734937454}
   - {fileID: 1544439944}
-  - {fileID: 1092423440}
-  - {fileID: 1975859539}
+  - {fileID: 1725831376868776521}
+  - {fileID: 2288212274066747650}
   m_Father: {fileID: 1529513224}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1815833190
@@ -26160,16 +26245,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1974913760}
   m_CullTransparentMesh: 1
---- !u!1 &1975859538 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6832193073013910040, guid: e92e8d74e0b06f54bb412019468275e8, type: 3}
-  m_PrefabInstance: {fileID: 6488513474723478386}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1975859539 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5028981812086803056, guid: e92e8d74e0b06f54bb412019468275e8, type: 3}
-  m_PrefabInstance: {fileID: 6488513474723478386}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1976816551
 GameObject:
   m_ObjectHideFlags: 0
@@ -27536,6 +27611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2068382552}
+  - component: {fileID: 2068382553}
   m_Layer: 0
   m_Name: EnvironmentGenerator
   m_TagString: Untagged
@@ -27555,9 +27631,27 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1070948567}
+  - {fileID: 1028416302}
+  - {fileID: 1641646178}
   m_Father: {fileID: 1769059333}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2068382553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068382551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74508ed140e0b494292ab3f44c5d07de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allTrees: {fileID: 1070948566}
+  allAnimals: {fileID: 1028416301}
+  allStones: {fileID: 1641646177}
 --- !u!1 &2082513543
 GameObject:
   m_ObjectHideFlags: 0
@@ -28624,6 +28718,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4935893166569373105, guid: 59f54f1f4eb79514dab0f7bea29d139b, type: 3}
   m_PrefabInstance: {fileID: 2924847806997338497}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &349881944862527850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6832193073013910040, guid: e92e8d74e0b06f54bb412019468275e8, type: 3}
+  m_PrefabInstance: {fileID: 6488513474723478386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &606499173943737179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28681,6 +28780,21 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45bda0650393cc94fa183e7961d33d4f, type: 3}
+--- !u!4 &1725831376868776521 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1725831375810041158, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
+  m_PrefabInstance: {fileID: 1092423439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1776704815346306795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1776704816402940388, guid: d1c23bd78d73d0f4b8f787f01bfd6b20, type: 3}
+  m_PrefabInstance: {fileID: 1092423439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2288212274066747650 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5028981812086803056, guid: e92e8d74e0b06f54bb412019468275e8, type: 3}
+  m_PrefabInstance: {fileID: 6488513474723478386}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2924847806997338497
 PrefabInstance:
   m_ObjectHideFlags: 0

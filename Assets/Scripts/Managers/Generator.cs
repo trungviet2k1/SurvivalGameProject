@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class Generator : MonoBehaviour
@@ -13,10 +13,18 @@ public class Generator : MonoBehaviour
     public List<SpawnData> allSpawnData = new List<SpawnData>();
 
     public Terrain terrain;
-    public GameObject parent;
+    public GameObject plants;
+    public GameObject animals;
+    public GameObject stones;
+
+    private Dictionary<GameObject, List<GameObject>> objectContainers = new();
 
     void Start()
     {
+        objectContainers.Add(plants, new List<GameObject>());
+        objectContainers.Add(animals, new List<GameObject>());
+        objectContainers.Add(stones, new List<GameObject>());
+
         GenerateObjects();
     }
 
@@ -29,8 +37,32 @@ public class Generator : MonoBehaviour
                 Vector3 randomPos = GetRandomPosition(terrain.terrainData.size);
 
                 GameObject newObject = Instantiate(data.prefab, randomPos, Quaternion.identity);
-                newObject.transform.parent = parent.transform;
+
+                GameObject container = GetContainerByPrefab(data.prefab);
+
+                newObject.transform.parent = container.transform;
+                objectContainers[container].Add(newObject);
             }
+        }
+    }
+
+    GameObject GetContainerByPrefab(GameObject prefab)
+    {
+        if (prefab.CompareTag("Plant"))
+        {
+            return plants;
+        }
+        else if (prefab.CompareTag("Animal"))
+        {
+            return animals;
+        }
+        else if (prefab.CompareTag("PickAble"))
+        {
+            return stones;
+        }
+        else
+        {
+            return null;
         }
     }
 
