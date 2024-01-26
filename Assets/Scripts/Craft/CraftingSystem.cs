@@ -247,5 +247,24 @@ public class CraftingSystem : MonoBehaviour
                 }
             }
         }
+
+        //Storage 
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[6] != null && requiredItems[7] != null)
+            {
+                Transform storageReq = requiredItems[7].transform;
+                storageReq.GetComponent<Text>().text = "8 plank [" + plank_cound + "/8]";
+
+                if (plank_cound >= 8 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[6].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[6].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }

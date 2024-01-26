@@ -20,6 +20,7 @@ public class CraftingMenu : MonoBehaviour
     public GameObject menuToolCraft;
     public GameObject menuResourcesCraft;
     public GameObject menuConstructionsCraft;
+    public GameObject menuStoragesCraft;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class CraftingMenu : MonoBehaviour
         menuToolCraft.SetActive(false);
         menuResourcesCraft.SetActive(false);
         menuConstructionsCraft.SetActive(false);
+        menuStoragesCraft.SetActive(false);
     }
 
     public void OnCraftingItemClick(int index)
@@ -70,6 +72,7 @@ public class CraftingMenu : MonoBehaviour
         menuToolCraft.SetActive(false);
         menuResourcesCraft.SetActive(false);
         menuConstructionsCraft.SetActive(false);
+        menuStoragesCraft.SetActive(false);
 
         switch (index)
         {
@@ -101,6 +104,10 @@ public class CraftingMenu : MonoBehaviour
                 menuConstructionsCraft.SetActive(true);
                 craftingItems[6].craftObject.SetActive(true);
                 break;
+            case 7:
+                menuStoragesCraft.SetActive(true);
+                craftingItems[7].craftObject.SetActive(true);
+                break;
         }
     }
 
@@ -119,6 +126,7 @@ public class CraftingMenu : MonoBehaviour
         menuToolCraft.SetActive(false);
         menuResourcesCraft.SetActive(false);
         menuConstructionsCraft.SetActive(false);
+        menuStoragesCraft.SetActive(false);
 
         if (craftObject != null)
         {

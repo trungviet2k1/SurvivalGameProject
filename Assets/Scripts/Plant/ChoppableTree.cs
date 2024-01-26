@@ -78,7 +78,7 @@ public class ChoppableTree : MonoBehaviour
         if (SelectionManager.Instance.selectedObject != null)
         {
             string itemName = SelectionManager.Instance.selectedObject.GetComponent<InteractableObject>().GetItemName();
-            Dictionary<string, string> treePrefabMap = new Dictionary<string, string>()
+            Dictionary<string, string> treePrefabMap = new()
         {
             { "Birch tree", "ChoppedBirchTree" },
             { "Oak tree", "ChoppedOakTree" },
@@ -90,6 +90,8 @@ public class ChoppableTree : MonoBehaviour
                 string prefabName = treePrefabMap[itemName];
                 GameObject choppedTreePrefab = Instantiate(Resources.Load<GameObject>(prefabName),
                     new Vector3(treePosition.x, treePosition.y, treePosition.z), Quaternion.Euler(0, 0, 0));
+
+                choppedTreePrefab.transform.SetParent(transform.parent.transform.parent.transform.parent);
             }
         }
     }
