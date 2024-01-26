@@ -2,60 +2,51 @@ using UnityEngine;
 
 public class CraftingScreenController : MonoBehaviour
 {
-    [Header("List of tools")]
-    public CanvasGroup toolsCanvasGroup;
+    [Header("Tools")]
+    public CanvasGroup toolsButtonCanvasGroup;
     public GameObject toolsMenu;
 
-    [Header("List of architectures")]
-    public CanvasGroup architectureCanvasGroup;
-    public GameObject architectureMenu;
+    [Header("Resources")]
+    public CanvasGroup resourcesButtonCanvasGroup;
+    public GameObject resourcesMenu;
 
-    [Header("List of constructions")]
-    public CanvasGroup constructionCanvasGroup;
-    public GameObject constructionMenu;
+    [Header("Constructions")]
+    public CanvasGroup constructionsButtonCanvasGroup;
+    public GameObject constructionsMenu;
 
     void Start()
     {
-        toolsCanvasGroup.alpha = 1f;
-        architectureCanvasGroup.alpha = 0.7f;
-        architectureMenu.SetActive(false);
-        constructionCanvasGroup.alpha = 0.7f;
-        constructionMenu.SetActive(false);
+        SetButtonAlpha(toolsButtonCanvasGroup, 0.5f);
+        SetButtonAlpha(resourcesButtonCanvasGroup, 0.5f);
+        SetButtonAlpha(constructionsButtonCanvasGroup, 0.5f);
     }
 
     public void OnToolsButtonClick()
     {
-        toolsCanvasGroup.alpha = 1f;
-        toolsMenu.SetActive(true);
-
-        architectureCanvasGroup.alpha = 0.7f;
-        architectureMenu.SetActive(false);
-
-        constructionCanvasGroup.alpha = 0.7f;
-        constructionMenu.SetActive(false);
+        SetButtonAlpha(toolsButtonCanvasGroup, 1f);
+        SetButtonAlpha(resourcesButtonCanvasGroup, 0.5f);
+        SetButtonAlpha(constructionsButtonCanvasGroup, 0.5f);
+        CraftingMenu.Instance.OnCraftingButtonClick(toolsButtonCanvasGroup, toolsMenu, null);
     }
 
-    public void OnArchitectureButtonClick()
+    public void OnResourcesButtonClick()
     {
-        architectureCanvasGroup.alpha = 1f;
-        architectureMenu.SetActive(true);
-
-        toolsCanvasGroup.alpha = 0.7f;
-        toolsMenu.SetActive(false);
-
-        constructionCanvasGroup.alpha = 0.7f;
-        constructionMenu.SetActive(false);
+        SetButtonAlpha(toolsButtonCanvasGroup, 0.5f);
+        SetButtonAlpha(resourcesButtonCanvasGroup, 1f);
+        SetButtonAlpha(constructionsButtonCanvasGroup, 0.5f);
+        CraftingMenu.Instance.OnCraftingButtonClick(resourcesButtonCanvasGroup, resourcesMenu, null);
     }
 
-    public void OnConstructionButtonClick()
+    public void OnConstructionsButtonClick()
     {
-        constructionCanvasGroup.alpha = 1f;
-        constructionMenu.SetActive(true);
+        SetButtonAlpha(toolsButtonCanvasGroup, 0.5f);
+        SetButtonAlpha(resourcesButtonCanvasGroup, 0.5f);
+        SetButtonAlpha(constructionsButtonCanvasGroup, 1f);
+        CraftingMenu.Instance.OnCraftingButtonClick(constructionsButtonCanvasGroup, constructionsMenu, null);
+    }
 
-        toolsCanvasGroup.alpha = 0.7f;
-        toolsMenu.SetActive(false);
-
-        architectureCanvasGroup.alpha = 0.7f;
-        architectureMenu.SetActive(false);
+    private void SetButtonAlpha(CanvasGroup buttonCanvasGroup, float alpha)
+    {
+        buttonCanvasGroup.alpha = alpha;
     }
 }

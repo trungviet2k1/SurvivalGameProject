@@ -84,7 +84,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             if (isUseable)
             {
-                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
                 gameObject.SetActive(false);
                 UseItem();
             }
@@ -125,25 +124,26 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         switch (gameObject.name)
         {
             case "Foundation(Clone)":
-                ConstructionManager.Instance.ActiveConstructionPlacement("FoundationModel");
-                break;
-            case "Foundation":
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
                 ConstructionManager.Instance.ActiveConstructionPlacement("FoundationModel");
                 break;
             case "Wall(Clone)":
-                ConstructionManager.Instance.ActiveConstructionPlacement("WallModel");
-                break;
-            case "Wall":
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
                 ConstructionManager.Instance.ActiveConstructionPlacement("WallModel");
                 break;
             case "Floor(Clone)":
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
                 ConstructionManager.Instance.ActiveConstructionPlacement("FloorModel");
                 break;
-            case "Floor":
-                ConstructionManager.Instance.ActiveConstructionPlacement("FloorModel");
+            case "StorageBox(Clone)":
+                PlacementSystem.Instance.inventoryItemToDestroy = gameObject;
+                PlacementSystem.Instance.ActivatePlacementModel("StorageBoxModel");
+                break;
+            case "StorageBox":
+                PlacementSystem.Instance.inventoryItemToDestroy = gameObject;
+                PlacementSystem.Instance.ActivatePlacementModel("StorageBoxModel");
                 break;
             default:
-                //do nothing
                 break;
         }
     }

@@ -196,7 +196,7 @@ public class ConstructionManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && inConstrucionMode)
         {
             itemToBeDestroyed.SetActive(true);
             itemToBeDestroyed = null;

@@ -17,6 +17,9 @@ public class SelectionManager : MonoBehaviour
     public Image handIcon;
     Text interaction_Text;
 
+    [Header("Storage Box")]
+    public GameObject selectedStorageBox;
+
     [Header("Tree")]
     public GameObject selectedTree;
     public GameObject chopHolder;
@@ -98,12 +101,29 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
+            StorageBox storageBox = selectionTransform.GetComponent<StorageBox>();
+
+            if (storageBox && storageBox.playerInRange && PlacementSystem.Instance.inPlacementMode == false)
+            {
+                interaction_Text.text = "[E] Open";
+                interaction_info_UI.SetActive(true);
+
+                selectedStorageBox = storageBox.gameObject;
+            }
+            else
+            {
+                if (selectedStorageBox != null)
+                {
+                    selectedStorageBox = null;
+                }
+            }
+
             Animal animal = selectionTransform.GetComponent<Animal>();
             if (animal && animal.playerInRange)
             {
                 if (animal.isDead)
                 {
-                    interaction_Text.text = "Loot";
+                    interaction_Text.text = "[F] Loot";
                     interaction_info_UI.SetActive(true);
                     centerDotImage.gameObject.SetActive(false);
                     handIcon.gameObject.SetActive(true);
@@ -131,13 +151,18 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-            if (!interacable && !animal && !choppeableTree)
+            if (!interacable && !animal)
+            {
+                onTarget = false;
+                handIsVisible = false;
+                centerDotImage.gameObject.SetActive(true);
+                handIcon.gameObject.SetActive(false);
+            }
+
+            if (!interacable && !animal && !choppeableTree && !storageBox)
             {
                 interaction_Text.text = "";
                 interaction_info_UI.SetActive(false);
-                centerDotImage.gameObject.SetActive(true);
-                handIcon.gameObject.SetActive(false);
-                handIsVisible = false;
             }
         }
     }

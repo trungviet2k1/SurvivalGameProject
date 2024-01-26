@@ -197,7 +197,7 @@ public class CraftingSystem : MonoBehaviour
             if (craftedButton[3] != null && requiredItems[4] != null)
             {
                 Transform foundationReq = requiredItems[4].transform;
-                foundationReq.GetComponent<Text>().text = "4 plank [" + plank_cound + "/1]";
+                foundationReq.GetComponent<Text>().text = "4 plank [" + plank_cound + "/4]";
 
                 if (plank_cound >= 4 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
@@ -216,7 +216,7 @@ public class CraftingSystem : MonoBehaviour
             if (craftedButton[4] != null && requiredItems[5] != null)
             {
                 Transform wallReq = requiredItems[5].transform;
-                wallReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/1]";
+                wallReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/2]";
 
                 if (plank_cound >= 2 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
@@ -235,7 +235,7 @@ public class CraftingSystem : MonoBehaviour
             if (craftedButton[5] != null && requiredItems[6] != null)
             {
                 Transform floorReq = requiredItems[6].transform;
-                floorReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/1]";
+                floorReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/2]";
 
                 if (plank_cound >= 2 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
