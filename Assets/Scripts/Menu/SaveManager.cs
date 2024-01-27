@@ -66,7 +66,7 @@ public class SaveManager : MonoBehaviour
     {
         List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
 
-        Dictionary<string, List<TreeData>> treeDataDict = new Dictionary<string, List<TreeData>>();
+        Dictionary<string, List<TreeData>> treeDataDict = new();
 
         foreach (Transform tree in EnvironmentManager.Instance.allTrees.transform)
         {
@@ -135,7 +135,7 @@ public class SaveManager : MonoBehaviour
     {
         List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
 
-        Dictionary<string, List<TreeGeneratorData>> treeDataDict = new Dictionary<string, List<TreeGeneratorData>>();
+        Dictionary<string, List<TreeGeneratorData>> treeDataDict = new();
 
         foreach (Transform tree in EnvironmentGeneratorManager.Instance.allTrees.transform)
         {
@@ -170,7 +170,7 @@ public class SaveManager : MonoBehaviour
             treeDataDict[treeName].Add(td);
         }
 
-        List<string> listAllAnimals = new List<string>();
+        List<string> listAllAnimals = new();
         foreach (Transform animalType in EnvironmentGeneratorManager.Instance.allAnimals.transform)
         {
             foreach (Transform animal in animalType.transform)
@@ -425,6 +425,8 @@ public class SaveManager : MonoBehaviour
                 var itemToAdd = Instantiate(Resources.Load<GameObject>(item));
                 itemToAdd.transform.SetParent(availableSlot.transform, false);
             }
+
+            isLoading = false;
         }
         else
         {

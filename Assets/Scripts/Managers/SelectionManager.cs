@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +17,9 @@ public class SelectionManager : MonoBehaviour
 
     [Header("Storage Box")]
     public GameObject selectedStorageBox;
+
+    [Header("CampFire")]
+    public GameObject selectedCampFire;
 
     [Header("Tree")]
     public GameObject selectedTree;
@@ -123,6 +124,28 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
+            CampFire campFire = selectionTransform.GetComponent<CampFire>();
+
+            if (campFire && campFire.playerInRange && PlacementSystem.Instance.inPlacementMode == false)
+            {
+                interaction_Text.text = "[E] Interact";
+                interaction_info_UI.SetActive(true);
+
+                selectedCampFire = campFire.gameObject;
+
+                if (Input.GetKey(KeyCode.E) && campFire.isCooking == false)
+                {
+                    campFire.OpenUI();
+                }
+            }
+            else
+            {
+                if (selectedCampFire != null)
+                {
+                    selectedCampFire = null;
+                }
+            }
+
             Animal animal = selectionTransform.GetComponent<Animal>();
             if (animal && animal.playerInRange)
             {
@@ -164,7 +187,7 @@ public class SelectionManager : MonoBehaviour
                 handIcon.gameObject.SetActive(false);
             }
 
-            if (!interacable && !animal && !choppeableTree && !storageBox)
+            if (!interacable && !animal && !choppeableTree && !storageBox && !campFire)
             {
                 interaction_Text.text = "";
                 interaction_info_UI.SetActive(false);

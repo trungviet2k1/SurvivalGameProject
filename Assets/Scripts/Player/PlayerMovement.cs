@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (MenuManager.Instance.isMenuOpen == false && StorageSystem.Instance.storageUIOpen == false)
+        if (MenuManager.Instance.isMenuOpen == false && StorageSystem.Instance.storageUIOpen == false
+            && CampFireUIManager.Instance.isUIOpen == false)
         {
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 

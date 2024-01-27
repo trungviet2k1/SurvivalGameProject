@@ -71,26 +71,37 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
     {
         if (Input.GetKeyDown(KeyCode.Tab) && !isOpen && !ConstructionManager.Instance.inConstrucionMode)
         {
-            inventoryScreenUI.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            SelectionManager.Instance.DisableSelection();
-            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
-            isOpen = true;
+            OpenUI();
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && isOpen)
         {
-            inventoryScreenUI.SetActive(false);
-            if (!CraftingSystem.Instance.isOpen)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-
-                SelectionManager.Instance.EnableSelection();
-                SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
-            }
-            isOpen = false;
+            CloseUI();
         }
+    }
+
+    public void OpenUI()
+    {
+        inventoryScreenUI.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SelectionManager.Instance.DisableSelection();
+        SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+        isOpen = true;
+    }
+
+    public void CloseUI()
+    {
+        inventoryScreenUI.SetActive(false);
+        if (!CraftingSystem.Instance.isOpen && !StorageSystem.Instance.storageUIOpen
+            && !CampFireUIManager.Instance.isUIOpen)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            SelectionManager.Instance.EnableSelection();
+            SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
+        }
+        isOpen = false;
     }
 
     public void AddToInventory(string itemName)

@@ -20,6 +20,7 @@ TagManager:
   - WallGhost
   - PlacedWall
   - PlacedFloor
+  - PlacedCampFire
   layers:
   - Default
   - TransparentFX

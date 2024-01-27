@@ -197,7 +197,7 @@ public class CraftingSystem : MonoBehaviour
             if (craftedButton[3] != null && requiredItems[4] != null)
             {
                 Transform foundationReq = requiredItems[4].transform;
-                foundationReq.GetComponent<Text>().text = "4 plank [" + plank_cound + "/4]";
+                foundationReq.GetComponent<Text>().text = "4 Planks [" + plank_cound + "/4]";
 
                 if (plank_cound >= 4 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
@@ -216,7 +216,7 @@ public class CraftingSystem : MonoBehaviour
             if (craftedButton[4] != null && requiredItems[5] != null)
             {
                 Transform wallReq = requiredItems[5].transform;
-                wallReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/2]";
+                wallReq.GetComponent<Text>().text = "2 Planks [" + plank_cound + "/2]";
 
                 if (plank_cound >= 2 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
@@ -235,7 +235,7 @@ public class CraftingSystem : MonoBehaviour
             if (craftedButton[5] != null && requiredItems[6] != null)
             {
                 Transform floorReq = requiredItems[6].transform;
-                floorReq.GetComponent<Text>().text = "2 plank [" + plank_cound + "/2]";
+                floorReq.GetComponent<Text>().text = "2 Planks [" + plank_cound + "/2]";
 
                 if (plank_cound >= 2 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
@@ -248,13 +248,13 @@ public class CraftingSystem : MonoBehaviour
             }
         }
 
-        //Storage 
+        //Storage
         if (craftedButton.Length > 0 && requiredItems.Length > 0)
         {
             if (craftedButton[6] != null && requiredItems[7] != null)
             {
                 Transform storageReq = requiredItems[7].transform;
-                storageReq.GetComponent<Text>().text = "8 plank [" + plank_cound + "/8]";
+                storageReq.GetComponent<Text>().text = "8 Planks [" + plank_cound + "/8]";
 
                 if (plank_cound >= 8 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
@@ -263,6 +263,27 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     craftedButton[6].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        //CampFire
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[7] != null && requiredItems[8] != null && requiredItems[9] != null)
+            {
+                Transform campfire1Req = requiredItems[8].transform;
+                Transform campfire2Req = requiredItems[9].transform;
+                campfire1Req.GetComponent<Text>().text = "1 Stone [" + stone_count + "/1]";
+                campfire2Req.GetComponent<Text>().text = "1 Stick [" + stick_count + "/1]";
+
+                if (stone_count >= 1 && stick_count >= 1 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[7].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[7].gameObject.SetActive(false);
                 }
             }
         }
