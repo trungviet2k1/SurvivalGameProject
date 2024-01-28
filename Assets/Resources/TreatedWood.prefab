@@ -114,8 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14dfa45dd498574f89ca37cdb044953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrashable: 1
-  thisName: Treated wood
+  thisName: Treated Wood
   thisDescription: The logs obtained after cutting down trees have been processed
   thisFunctionality: It can be used to build projects, or to create quality wooden
     planks
@@ -126,3 +125,5 @@ MonoBehaviour:
   isEquippable: 0
   isInsideQuickSlot: 0
   isSelected: 0
+  isTrashable: 1
+  isUseable: 0

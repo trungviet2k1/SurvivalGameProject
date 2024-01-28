@@ -218,9 +218,9 @@ public class SelectionManager : MonoBehaviour
                         else
                         {
                             interaction_Text.text = "Use Watering Can";
-                            interaction_info_UI.SetActive(false);
+                            interaction_info_UI.SetActive(true);
 
-                            if (Input.GetMouseButton(0))
+                            if (Input.GetMouseButtonDown(0))
                             {
                                 SoundManager.Instance.wateringChanel.PlayOneShot(SoundManager.Instance.wateringCanSound);
                                 soil.currentPlant.isWatered = true;
