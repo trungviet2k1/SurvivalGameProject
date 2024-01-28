@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -135,9 +136,21 @@ public class EquipSystem : MonoBehaviour
         }
 
         string selectedItemName = selectedItem.name.Replace("(Clone)", "");
-        selectedItemModel = Instantiate(Resources.Load<GameObject>(selectedItemName + "_Model"),
-            new Vector3(0.17f, -0.14f, 0.83f), Quaternion.Euler(20f, 60f, 0));
+        selectedItemModel = Instantiate(Resources.Load<GameObject>(CalculateItemModel(selectedItemName)));
+
         selectedItemModel.transform.SetParent(ToolHolder.transform, false);
+    }
+
+    private string CalculateItemModel(string selectedItemName)
+    {
+        return selectedItemName switch
+        {
+            "StoneAxe" => "Axe_Model",
+            "TomatoSeed" => "Hand_Model",
+            "PumpkinSeed" => "Hand_Model",
+            "WateringCan" => "WateringCan_Model",
+            _ => null,
+        };
     }
 
     GameObject GetSelectedItem(int slotNumber)
@@ -210,6 +223,23 @@ public class EquipSystem : MonoBehaviour
         }
     }
 
+    public bool IsPlayerHoldingSeed()
+    {
+        if (selectedItemModel != null)
+        {
+            return selectedItemModel.name switch
+            {
+                "Hand_Model(Clone)" => true,
+                "Hand_Model" => true,
+                _ => false,
+            };
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     internal bool IsHoldingWeapon()
     {
         if (selectedItem != null)
@@ -246,6 +276,22 @@ public class EquipSystem : MonoBehaviour
         if (selectedItemModel && selectedItemModel.GetComponent<EquipableItem>())
         {
             return selectedItemModel.GetComponent<EquipableItem>().swingWait;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    internal bool IsPlayerHoldingWateringCan()
+    {
+        if (selectedItem != null)
+        {
+            return selectedItem.GetComponent<InventoryItem>().thisName switch
+            {
+                "Watering Can" => true,
+                _ => false,
+            };
         }
         else
         {

@@ -21,6 +21,9 @@ public class SelectionManager : MonoBehaviour
     [Header("CampFire")]
     public GameObject selectedCampFire;
 
+    [Header("Soil")]
+    public GameObject selectedSoil;
+
     [Header("Tree")]
     public GameObject selectedTree;
     public GameObject chopHolder;
@@ -179,6 +182,70 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
+            Soil soil = selectionTransform.GetComponent<Soil>();
+
+            if (soil && soil.playerInRange)
+            {
+
+                if (soil.isEmpty && EquipSystem.Instance.IsPlayerHoldingSeed())
+                {
+                    string seedName = EquipSystem.Instance.selectedItem.GetComponent<InventoryItem>().thisName;
+                    string onlyPlantName = seedName.Split(new string[] { "Seed" }, System.StringSplitOptions.None)[0];
+                    interaction_Text.text = "[E] To plant " + onlyPlantName;
+                    interaction_info_UI.SetActive(true);
+
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        soil.PlantSeed();
+                        Destroy(EquipSystem.Instance.selectedItem);
+                        Destroy(EquipSystem.Instance.selectedItemModel);
+                    }
+                }
+                else if (soil.isEmpty)
+                {
+                    interaction_Text.text = "Soil";
+                    interaction_info_UI.SetActive(true);
+                }
+                else
+                {
+                    if (EquipSystem.Instance.IsPlayerHoldingWateringCan())
+                    {
+                        if (soil.currentPlant.isWatered)
+                        {
+                            interaction_Text.text = soil.plantName + " Plant";
+                            interaction_info_UI.SetActive(true);
+                        }
+                        else
+                        {
+                            interaction_Text.text = "Use Watering Can";
+                            interaction_info_UI.SetActive(false);
+
+                            if (Input.GetMouseButton(0))
+                            {
+                                SoundManager.Instance.wateringChanel.PlayOneShot(SoundManager.Instance.wateringCanSound);
+                                soil.currentPlant.isWatered = true;
+                                soil.MakeSoilWatered();
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        interaction_Text.text = soil.plantName + " Plant";
+                        interaction_info_UI.SetActive(true);
+                    }
+                }
+
+                selectedSoil = soil.gameObject;
+            }
+            else
+            {
+                if (selectedSoil != null)
+                {
+                    selectedSoil = null;
+                }
+            }
+
             if (!interacable && !animal)
             {
                 onTarget = false;
@@ -187,7 +254,7 @@ public class SelectionManager : MonoBehaviour
                 handIcon.gameObject.SetActive(false);
             }
 
-            if (!interacable && !animal && !choppeableTree && !storageBox && !campFire)
+            if (!interacable && !animal && !choppeableTree && !storageBox && !campFire && !soil)
             {
                 interaction_Text.text = "";
                 interaction_info_UI.SetActive(false);

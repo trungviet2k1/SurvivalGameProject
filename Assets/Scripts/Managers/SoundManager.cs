@@ -11,6 +11,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource chopSound;
     public AudioSource pickUpItemSound;
     public AudioSource grassWalkSound;
+    public AudioSource wateringChanel;
+    public AudioClip wateringCanSound;
 
     [Header("Game Music")]
     public AudioSource startingZoneBGMusic;
