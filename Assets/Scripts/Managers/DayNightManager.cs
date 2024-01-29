@@ -17,6 +17,8 @@ public class DayNightManager : MonoBehaviour
     public TextMeshProUGUI timeUI;
     public Shader myShader;
 
+    public WeatherSystem weatherSystem;
+
     void Update()
     {
 
@@ -29,7 +31,21 @@ public class DayNightManager : MonoBehaviour
 
         directionlLight.transform.rotation = Quaternion.Euler(new Vector3((currentTimeOfDay * 360) - 90, 170, 0));
 
-        UpdateSkybox();
+        if (weatherSystem.isSpecialWeather == false)
+        {
+            UpdateSkybox(); 
+        }
+
+        if (currentHours == 0 && lockNextDayTrigger == false)
+        {
+            TimeManager.Instance.TriggerNextDay();
+            lockNextDayTrigger = true;
+        }
+
+        if (currentHours != 0)
+        {
+            lockNextDayTrigger = false;
+        }
     }
 
     private void UpdateSkybox()
@@ -57,17 +73,6 @@ public class DayNightManager : MonoBehaviour
 
                 break;
             } 
-        }
-
-        if (currentHours == 0 && lockNextDayTrigger == false)
-        {
-            TimeManager.Instance.TriggerNextDay();
-            lockNextDayTrigger = true;
-        }
-
-        if (currentHours != 0)
-        {
-            lockNextDayTrigger = false;
         }
 
         if (currentSkyBox != null)
