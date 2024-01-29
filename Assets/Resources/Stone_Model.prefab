@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6444307873898654472
+--- !u!1 &1616295070519314676
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8906028667766288218}
-  - component: {fileID: 3663901531139097983}
-  - component: {fileID: 8693851518335155925}
-  - component: {fileID: 4661218303752671925}
-  - component: {fileID: 2883824067879720228}
-  - component: {fileID: 6289349779527185319}
+  - component: {fileID: 4210716749984138863}
+  - component: {fileID: 4882009076042551943}
+  - component: {fileID: 4527689940672830280}
+  - component: {fileID: 7413608399285825598}
+  - component: {fileID: 2082879868844446705}
+  - component: {fileID: 7502831059427720549}
   m_Layer: 0
-  m_Name: Raw Meat_Model
+  m_Name: Stone_Model
   m_TagString: PickAble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!4 &8906028667766288218
+--- !u!4 &4210716749984138863
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444307873898654472}
+  m_GameObject: {fileID: 1616295070519314676}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4800798, y: -0.51915646, z: -0.51915646, w: 0.4800798}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.049999997, y: 0.049999997, z: 0.049999997}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 506.24597, y: 0.30711788, z: 501.7933}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -94.479}
---- !u!33 &3663901531139097983
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4882009076042551943
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444307873898654472}
-  m_Mesh: {fileID: -8754555813253085575, guid: 1219cd400574f744ab879f403626f174, type: 3}
---- !u!23 &8693851518335155925
+  m_GameObject: {fileID: 1616295070519314676}
+  m_Mesh: {fileID: 4300000, guid: 0a1cade8f3785a5498483caf954be128, type: 3}
+--- !u!23 &4527689940672830280
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444307873898654472}
+  m_GameObject: {fileID: 1616295070519314676}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b167d18df91e7cb4f8f9b2146caecce7, type: 2}
+  - {fileID: 2100000, guid: 6745167470224e74db37c9f8c2cf4d25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,13 +86,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4661218303752671925
+--- !u!64 &7413608399285825598
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444307873898654472}
+  m_GameObject: {fileID: 1616295070519314676}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,17 +107,17 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -8754555813253085575, guid: 1219cd400574f744ab879f403626f174, type: 3}
---- !u!54 &2883824067879720228
+  m_Mesh: {fileID: 4300000, guid: 0a1cade8f3785a5498483caf954be128, type: 3}
+--- !u!54 &2082879868844446705
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444307873898654472}
+  m_GameObject: {fileID: 1616295070519314676}
   serializedVersion: 4
   m_Mass: 5
-  m_Drag: 0.1
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -135,18 +135,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6289349779527185319
+--- !u!114 &7502831059427720549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6444307873898654472}
+  m_GameObject: {fileID: 1616295070519314676}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f41ba3f9761b7c44f8d53a6fcf23ba01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Raw meat
-  detectionRange: 5
+  ItemName: Stone
+  detectionRange: 7

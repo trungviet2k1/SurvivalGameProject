@@ -45,7 +45,10 @@ public class StorageSystem : MonoBehaviour
 
         foreach (Transform child in storageUI.transform)
         {
-            uiSlots.Add(child.gameObject);
+            if (child.CompareTag("ItemSlot"))
+            {
+                uiSlots.Add(child.gameObject);
+            }
         }
 
         foreach (string name in selectedStorage.items)

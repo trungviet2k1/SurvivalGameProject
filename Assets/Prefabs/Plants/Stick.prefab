@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4434242703957291069}
   - component: {fileID: 984732789697114602}
   - component: {fileID: 3578771458817063870}
-  - component: {fileID: 8294482376527848376}
   - component: {fileID: 2537662894793017394}
   m_Layer: 0
   m_Name: Stick
@@ -108,27 +107,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2257621098689611155, guid: 95cc45b7a6c86ed4daa4a2e32f6a0e5e, type: 3}
---- !u!65 &8294482376527848376
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7442644856567345077}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 9, y: 1.676304, z: 9}
-  m_Center: {x: -0.003296852, y: 0.0457571, z: -0.005306244}
 --- !u!114 &2537662894793017394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   ItemName: Stick
+  detectionRange: 7

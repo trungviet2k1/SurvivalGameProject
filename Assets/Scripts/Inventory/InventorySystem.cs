@@ -23,8 +23,11 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
     public GameObject pickupAlert;
     public Text pickupName;
     public Image pickupImage;
+    public GameObject inventoryFullAlert;
+    public Button closeInventoryAlert;
 
     [HideInInspector] public bool isOpen;
+    [HideInInspector] public bool isAlertFullOpen;
     private GameObject itemToAdd;
     private GameObject whatSlotToEquip;
 
@@ -220,5 +223,15 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
                 itemList.Add(result);
             }
         }
+    }
+
+    public void CloseInventoryFullAlert()
+    {
+        inventoryFullAlert.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        SelectionManager.Instance.EnableSelection();
+        SelectionManager.Instance.GetComponent<SelectionManager>().enabled = true;
+        isAlertFullOpen = false;
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,7 +80,7 @@ public class ChoppableTree : MonoBehaviour
             string itemName = SelectionManager.Instance.selectedObject.GetComponent<InteractableObject>().GetItemName();
             Dictionary<string, string> treePrefabMap = new()
         {
-            { "Birch tree", "ChoppedBirchTree" },
+            { "Birch tree", "ChoppedBirchTree2" },
             { "Oak tree", "ChoppedOakTree" },
             { "Deciduous tree", "ChoppedDeciduousTree" }
         };
@@ -91,7 +91,18 @@ public class ChoppableTree : MonoBehaviour
                 GameObject choppedTreePrefab = Instantiate(Resources.Load<GameObject>(prefabName),
                     new Vector3(treePosition.x, treePosition.y, treePosition.z), Quaternion.Euler(0, 0, 0));
 
+                string originalPrefabName = prefabName.Replace("Chopped", "");
+                string newTreeName = originalPrefabName + "Parent";
+                choppedTreePrefab.name = newTreeName;
+
                 choppedTreePrefab.transform.SetParent(transform.parent.transform.parent.transform.parent);
+
+                if (choppedTreePrefab.TryGetComponent<RegrowTree>(out var regrowTreeScript))
+                {
+                    regrowTreeScript.newTreeName = newTreeName;
+
+                    regrowTreeScript.dayOfRegrowth = TimeManager.Instance.dayInGame + 2;
+                }
             }
         }
     }

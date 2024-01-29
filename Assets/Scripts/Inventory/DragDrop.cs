@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
@@ -34,11 +35,26 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        var tempItemReference = itemBeingDragged;
         itemBeingDragged = null;
         if (transform.parent == startParent || transform.parent == transform.root)
         {
-            transform.position = startPosition;
-            transform.SetParent(startParent);
+            tempItemReference.SetActive(false);
+
+            AlertDialogManager diaLogManager = FindObjectOfType<AlertDialogManager>();
+            diaLogManager.ShowDialog("Drop this items?", (response) =>
+            {
+                if (response)
+                {
+                    DropItemIntoWorld(tempItemReference);
+                }
+                else
+                {
+                    transform.position = startPosition;
+                    transform.SetParent(startParent);
+                }
+
+            });
         }
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
@@ -46,6 +62,25 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         InventorySystem.Instance.ReCalculateList();
         SpareBagSystem.Instance.ReCalculateList();
         CraftingSystem.Instance.RefreshNeedItems();
+    }
+
+    private void DropItemIntoWorld(GameObject tempItemReference)
+    {
+        string cleanName = tempItemReference.name.Split(new string[] { "(Clone)" }, StringSplitOptions.None)[0];
+
+        GameObject item = Instantiate(Resources.Load<GameObject>(cleanName + "_Model"));
+
+        item.transform.position = Vector3.zero;
+        var dropSpawnPosition = PlayerState.Instance.playerBody.transform.Find("DropSpawn").transform.position;
+        item.transform.localPosition = new Vector3(dropSpawnPosition.x, dropSpawnPosition.y, dropSpawnPosition.z);
+
+        var itemObject = FindObjectOfType<EnvironmentManager>().gameObject.transform.Find("[Items]");
+        item.transform.SetParent(itemObject.transform);
+
+        DestroyImmediate(tempItemReference);
+        InventorySystem.Instance.ReCalculateList();
+        CraftingSystem.Instance.RefreshNeedItems();
+        SpareBagSystem.Instance.ReCalculateList();
     }
 
     public void OnPointerClick(PointerEventData eventData)

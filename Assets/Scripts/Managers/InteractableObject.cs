@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -41,7 +42,12 @@ public class InteractableObject : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Inventory is full");
+                    InventorySystem.Instance.inventoryFullAlert.SetActive(true);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    SelectionManager.Instance.DisableSelection();
+                    SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+                    InventorySystem.Instance.isAlertFullOpen = true;
                 }
             }
         }
