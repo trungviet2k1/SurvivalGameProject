@@ -6,7 +6,7 @@ public class EnvironmentGeneratorManager : MonoBehaviour
 
     public GameObject allTrees;
     public GameObject allAnimals;
-    public GameObject allStones;
+    public GameObject allItems;
 
     private void Awake()
     {

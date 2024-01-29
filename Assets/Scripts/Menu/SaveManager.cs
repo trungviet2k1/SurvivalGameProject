@@ -270,7 +270,7 @@ public class SaveManager : MonoBehaviour
     private void SetEnvironmentGeneratorData(EnvironmentGeneratorData environmentGeneratorData)
     {
         // ======= Pick up items ======= //
-        foreach (Transform itemType in EnvironmentGeneratorManager.Instance.allStones.transform)
+        foreach (Transform itemType in EnvironmentGeneratorManager.Instance.allItems.transform)
         {
             foreach (Transform item in itemType.transform)
             {

@@ -15,7 +15,7 @@ public class Generator : MonoBehaviour
     public Terrain terrain;
     public GameObject plants;
     public GameObject animals;
-    public GameObject stones;
+    public GameObject items;
 
     private Dictionary<GameObject, List<GameObject>> objectContainers = new();
 
@@ -23,7 +23,7 @@ public class Generator : MonoBehaviour
     {
         objectContainers.Add(plants, new List<GameObject>());
         objectContainers.Add(animals, new List<GameObject>());
-        objectContainers.Add(stones, new List<GameObject>());
+        objectContainers.Add(items, new List<GameObject>());
 
         GenerateObjects();
     }
@@ -58,7 +58,7 @@ public class Generator : MonoBehaviour
         }
         else if (prefab.CompareTag("PickAble"))
         {
-            return stones;
+            return items;
         }
         else
         {
