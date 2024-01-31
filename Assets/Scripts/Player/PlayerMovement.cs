@@ -6,10 +6,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Run Speed")]
     public CharacterController controller;
-    public float speed = 12f;
+    public float speedInGround = 12f;
+    public float speedInWater = 8f;
 
     [Header("Gravity")]
-    public float gravity = -9.81f * 2;
+    public float gravity;
+    public float swimmingGravity = -0.5f;
+    public float walkingGravity = -9.81f * 2;
 
     [Header("Jump Activity")]
     public float jumpHeight = 2.5f;
@@ -23,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     bool isMoving;
 
     [HideInInspector] public bool isGrounded;
+    [HideInInspector] public bool isSwimming;
+    [HideInInspector] public bool isUnderWater;
 
     void Awake()
     {
@@ -41,49 +46,83 @@ public class PlayerMovement : MonoBehaviour
         if (MenuManager.Instance.isMenuOpen == false && StorageSystem.Instance.storageUIOpen == false
             && CampFireUIManager.Instance.isUIOpen == false)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            Movement();
+        }
+    }
 
-            if (isGrounded && velocity.y < 0)
+    public void Movement()
+    {
+        if (isSwimming)
+        {
+            if (isUnderWater)
             {
-                velocity.y = -2f;
-            }
-
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            Vector3 move = transform.right * x + transform.forward * z;
-
-            controller.Move(speed * Time.deltaTime * move);
-
-            if (Input.GetButtonDown("Jump") && isGrounded)
-            {
-                if (isMoving)
-                {
-                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                    controller.Move(transform.forward * jumpForwardForce * Time.deltaTime);
-                }
-                else
-                {
-                    velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                }
-            }
-
-            velocity.y += gravity * Time.deltaTime;
-            controller.Move(velocity * Time.deltaTime);
-
-            isMoving = (lastPosition != gameObject.transform.position && isGrounded);
-            if (isMoving)
-            {
-                isMoving = true;
-                SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
+                gravity = swimmingGravity;
             }
             else
             {
-                isMoving = false;
-                SoundManager.Instance.grassWalkSound.Stop();
+                velocity.y = 0;
             }
-
-            lastPosition = gameObject.transform.position; 
         }
+        else
+        {
+            gravity = walkingGravity;
+        }
+
+        int layerMask = 1 << gameObject.layer;
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        if (gameObject.layer != LayerMask.NameToLayer("Water"))
+        {
+            controller.Move(speedInGround * Time.deltaTime * move);
+        }
+        else
+        {
+            controller.Move(speedInWater * Time.deltaTime * move);
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            if (isMoving)
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                controller.Move(jumpForwardForce * Time.deltaTime * transform.forward);
+            }
+            else
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        isMoving = (lastPosition != gameObject.transform.position && isGrounded);
+        if (isMoving)
+        {
+            isMoving = true;
+
+            if (gameObject.layer != LayerMask.NameToLayer("Water"))
+            {
+                SoundManager.Instance.PlaySound(SoundManager.Instance.grassWalkSound);
+            }
+        }
+        else
+        {
+            isMoving = false;
+            SoundManager.Instance.grassWalkSound.Stop();
+        }
+
+        lastPosition = gameObject.transform.position;
     }
 }

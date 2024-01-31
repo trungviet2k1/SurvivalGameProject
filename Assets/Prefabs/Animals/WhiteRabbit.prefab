@@ -725,7 +725,6 @@ GameObject:
   - component: {fileID: 95674028643950644}
   - component: {fileID: -6674744109012673678}
   - component: {fileID: 1339155074795384443}
-  - component: {fileID: 3706619622273672215}
   - component: {fileID: 4340297685987063922}
   - component: {fileID: 7321016332324694502}
   - component: {fileID: 1273062107906921304}
@@ -826,27 +825,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.43484497, y: 0.571532, z: 0.8851929}
   m_Center: {x: -0.0002593994, y: 0.28112626, z: 0.12136841}
---- !u!65 &3706619622273672215
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588090451174212}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 7.5, y: 1.5, z: 7.5}
-  m_Center: {x: -0.0021870136, y: 0.48204112, z: 0.058288574}
 --- !u!114 &4340297685987063922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,6 +854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animalName: Small Rabbit
   playerInRange: 0
+  detectionRange: 5
   currentHealth: 0
   maxHealth: 40
   soundChannel: {fileID: 2021825820457964578}

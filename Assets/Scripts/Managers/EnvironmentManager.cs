@@ -6,6 +6,7 @@ public class EnvironmentManager : MonoBehaviour
 
     public GameObject allItems;
     public GameObject allTrees;
+    public GameObject allFruits;
     public GameObject allAnimals;
     public GameObject placeable;
 

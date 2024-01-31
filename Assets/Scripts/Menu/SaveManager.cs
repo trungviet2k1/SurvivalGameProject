@@ -101,6 +101,15 @@ public class SaveManager : MonoBehaviour
             treeDataDict[treeName].Add(td);
         }
 
+        List<string> allFruits = new();
+        foreach (Transform fruits in EnvironmentManager.Instance.allFruits.transform)
+        {
+            foreach (Transform fruit in fruits.transform)
+            {
+                allFruits.Add(fruit.gameObject.name);
+            }
+        }
+
         List<string> allAnimals = new();
         foreach (Transform animalType in EnvironmentManager.Instance.allAnimals.transform)
         {
@@ -128,7 +137,7 @@ public class SaveManager : MonoBehaviour
 
         List<TreeData> treeToSave = treeDataDict.Values.SelectMany(x => x).ToList();
 
-        return new EnvironmentData(itemsPickedup, treeToSave, allAnimals, allStorage);
+        return new EnvironmentData(itemsPickedup, treeToSave, allFruits, allAnimals, allStorage);
     }
 
     private EnvironmentGeneratorData GetEnvironmentGeneratorData()
@@ -351,6 +360,18 @@ public class SaveManager : MonoBehaviour
                 Quaternion.Euler(tree.rotation.x, tree.rotation.y, tree.rotation.z));
 
             treePrefab.transform.SetParent(EnvironmentManager.Instance.allTrees.transform);
+        }
+
+        // ======= Fruits ======= //
+        foreach (Transform fruits in EnvironmentManager.Instance.allFruits.transform)
+        {
+            foreach (Transform fruit in fruits.transform)
+            {
+                if (!environmentData.fruits.Contains(fruit.gameObject.name))
+                {
+                    Destroy(fruit.gameObject);
+                }
+            }
         }
 
         // ======= Animals ======= //

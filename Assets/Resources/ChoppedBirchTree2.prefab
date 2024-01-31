@@ -367,6 +367,7 @@ MonoBehaviour:
   playerInRange: 0
   ItemName: Log
   detectionRange: 10
+  itemType: 0
 --- !u!1 &2794487835690339136
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,3 +892,4 @@ MonoBehaviour:
   playerInRange: 0
   ItemName: Log
   detectionRange: 10
+  itemType: 0

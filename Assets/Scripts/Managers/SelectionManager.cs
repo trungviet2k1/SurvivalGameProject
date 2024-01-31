@@ -23,6 +23,9 @@ public class SelectionManager : MonoBehaviour
 
     [Header("Soil")]
     public GameObject selectedSoil;
+    
+    [Header("Fruit")]
+    public GameObject selectedFruit;
 
     [Header("Tree")]
     public GameObject selectedTree;
@@ -246,6 +249,23 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
+            Fruits fruits = selectionTransform.GetComponent<Fruits>();
+
+            if (fruits && fruits.playerInRange)
+            {
+                interaction_Text.text = fruits.fruitName + " Plant";
+                interaction_info_UI.SetActive(true);
+
+                selectedFruit = fruits.gameObject;
+            }
+            else
+            {
+                if (selectedCampFire != null)
+                {
+                    selectedCampFire = null;
+                }
+            }
+
             if (!interacable && !animal)
             {
                 onTarget = false;
@@ -254,7 +274,7 @@ public class SelectionManager : MonoBehaviour
                 handIcon.gameObject.SetActive(false);
             }
 
-            if (!interacable && !animal && !choppeableTree && !storageBox && !campFire && !soil)
+            if (!interacable && !animal && !choppeableTree && !storageBox && !campFire && !soil && !fruits)
             {
                 interaction_Text.text = "";
                 interaction_info_UI.SetActive(false);

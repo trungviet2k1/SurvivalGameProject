@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
@@ -32,23 +32,28 @@ public class InteractableObject : MonoBehaviour
         if (!gameObject.CompareTag("Animal") && !gameObject.CompareTag("Plant") 
             && !gameObject.CompareTag("Stone"))
         {
-            if (Input.GetKeyDown(KeyCode.F) && playerInRange && SelectionManager.Instance.selectedObject == gameObject)
+            PickUpObject();
+        }
+    }
+
+    public void PickUpObject()
+    {
+        if (Input.GetKeyDown(KeyCode.F) && playerInRange && SelectionManager.Instance.selectedObject == gameObject)
+        {
+            if (InventorySystem.Instance.CheckSlotsAvailable(1))
             {
-                if (InventorySystem.Instance.CheckSlotsAvailable(1))
-                {
-                    InventorySystem.Instance.AddToInventory(ItemName);
-                    InventorySystem.Instance.itemPickedup.Add(gameObject.name);
-                    Destroy(gameObject);
-                }
-                else
-                {
-                    InventorySystem.Instance.inventoryFullAlert.SetActive(true);
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                    SelectionManager.Instance.DisableSelection();
-                    SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
-                    InventorySystem.Instance.isAlertFullOpen = true;
-                }
+                InventorySystem.Instance.AddToInventory(ItemName);
+                InventorySystem.Instance.itemPickedup.Add(gameObject.name);
+                Destroy(gameObject);
+            }
+            else
+            {
+                InventorySystem.Instance.inventoryFullAlert.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                SelectionManager.Instance.DisableSelection();
+                SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
+                InventorySystem.Instance.isAlertFullOpen = true;
             }
         }
     }

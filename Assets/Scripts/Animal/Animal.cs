@@ -6,6 +6,10 @@ public class Animal : MonoBehaviour
     public string animalName;
     public bool playerInRange;
 
+    [Header("Range")]
+    [SerializeField] float detectionRange = 10f;
+
+    [Header("Health")]
     [SerializeField] int currentHealth;
     [SerializeField] int maxHealth;
 
@@ -35,6 +39,20 @@ public class Animal : MonoBehaviour
     {
         currentHealth = maxHealth;
         anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        float distance = Vector3.Distance(PlayerState.Instance.playerBody.transform.position, transform.position);
+
+        if (distance < detectionRange)
+        {
+            playerInRange = true;
+        }
+        else
+        {
+            playerInRange = false;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -100,22 +118,6 @@ public class Animal : MonoBehaviour
                 break;
             default:
                 break;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
         }
     }
 }
