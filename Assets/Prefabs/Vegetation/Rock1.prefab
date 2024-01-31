@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23733905104197934}
   - component: {fileID: 64819107711435158}
   - component: {fileID: 5936707344612149724}
-  - component: {fileID: 5306159365068371425}
   m_Layer: 0
   m_Name: Rock1
   m_TagString: Stone
@@ -122,24 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   ItemName: "T\u1EA3ng \u0111\xE1 l\u1EDBn [D\xF9ng b\xFAa \u0111\u1EC3 \u0111\u1EADp]"
---- !u!65 &5306159365068371425
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1562119382739742}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 25, y: 5.5235977, z: 25}
-  m_Center: {x: 0.000051498413, y: 2.5574303, z: -0.00006055832}
+  detectionRange: 10

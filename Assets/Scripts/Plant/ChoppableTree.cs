@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent (typeof(BoxCollider))]
 public class ChoppableTree : MonoBehaviour
 {
+    [Header("Range")]
+    [SerializeField] float detectionRange = 10f;
+
     [Header("Tree Status")]
     public float treeMaxHealth;
     public float treeHealth;
@@ -25,19 +28,23 @@ public class ChoppableTree : MonoBehaviour
         anim = transform.parent.transform.parent.GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void Update()
     {
-        if (other.CompareTag("Player"))
+        float distance = Vector3.Distance(PlayerState.Instance.playerBody.transform.position, transform.position);
+
+        if (distance < detectionRange)
         {
             playerInRange = true;
         }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        else
         {
             playerInRange = false;
+        }
+
+        if (canBeChopped)
+        {
+            GlobalState.Instance.resourceHealth = treeHealth;
+            GlobalState.Instance.resourceMaxHealth = treeMaxHealth;
         }
     }
 
@@ -73,14 +80,14 @@ public class ChoppableTree : MonoBehaviour
         Destroy(transform.parent.transform.parent.gameObject);
         canBeChopped = false;
         SelectionManager.Instance.selectedTree = null;
-        SelectionManager.Instance.chopHolder.gameObject.SetActive(false);
+        SelectionManager.Instance.chopHolder.SetActive(false);
 
         if (SelectionManager.Instance.selectedObject != null)
         {
             string itemName = SelectionManager.Instance.selectedObject.GetComponent<InteractableObject>().GetItemName();
             Dictionary<string, string> treePrefabMap = new()
         {
-            { "Birch tree", "ChoppedBirchTree2" },
+            { "Birch tree", "ChoppedBirchTree" },
             { "Oak tree", "ChoppedOakTree" },
             { "Deciduous tree", "ChoppedDeciduousTree" }
         };
@@ -104,15 +111,6 @@ public class ChoppableTree : MonoBehaviour
                     regrowTreeScript.dayOfRegrowth = TimeManager.Instance.dayInGame + 2;
                 }
             }
-        }
-    }
-
-    void Update()
-    {
-        if (canBeChopped)
-        {
-            GlobalState.Instance.resourceHealth = treeHealth;
-            GlobalState.Instance.resourceMaxHealth = treeMaxHealth;
         }
     }
 }

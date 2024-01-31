@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3613218230558725378}
   - component: {fileID: 8262774914154542416}
   - component: {fileID: 3951162837552236919}
-  - component: {fileID: 1416812568306639802}
   - component: {fileID: 1059833520157619787}
   m_Layer: 0
   m_Name: Rock1
@@ -108,27 +107,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: 7e7c5a68504558b45bd9e9301d6c579b, type: 3}
---- !u!65 &1416812568306639802
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9099173277143006220}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 25, y: 5.5235977, z: 25}
-  m_Center: {x: -0.000001907349, y: 2.5574303, z: 0.0000004768373}
 --- !u!114 &1059833520157619787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInRange: 0
   ItemName: Big Stone
+  detectionRange: 10

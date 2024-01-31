@@ -10,14 +10,14 @@ public class Generator : MonoBehaviour
         public int amount;
     }
 
-    public List<SpawnData> allSpawnData = new List<SpawnData>();
+    public List<SpawnData> allSpawnData = new();
 
-    public Terrain terrain;
+    public List<Terrain> terrains;
     public GameObject plants;
     public GameObject animals;
     public GameObject items;
 
-    private Dictionary<GameObject, List<GameObject>> objectContainers = new();
+    private readonly Dictionary<GameObject, List<GameObject>> objectContainers = new();
 
     void Start()
     {
@@ -25,16 +25,24 @@ public class Generator : MonoBehaviour
         objectContainers.Add(animals, new List<GameObject>());
         objectContainers.Add(items, new List<GameObject>());
 
-        GenerateObjects();
+        GenerateObjectsOnTerrains();
     }
 
-    void GenerateObjects()
+    void GenerateObjectsOnTerrains()
+    {
+        foreach (Terrain terrain in terrains)
+        {
+            GenerateObjectsOnTerrain(terrain);
+        }
+    }
+
+    void GenerateObjectsOnTerrain(Terrain terrain)
     {
         foreach (SpawnData data in allSpawnData)
         {
             for (int i = 0; i < data.amount; i++)
             {
-                Vector3 randomPos = GetRandomPosition(terrain.terrainData.size);
+                Vector3 randomPos = GetRandomPosition(terrain.terrainData.size, terrain.GetPosition());
 
                 GameObject newObject = Instantiate(data.prefab, randomPos, Quaternion.identity);
 
@@ -66,13 +74,14 @@ public class Generator : MonoBehaviour
         }
     }
 
-    Vector3 GetRandomPosition(Vector3 terrainSize)
+    Vector3 GetRandomPosition(Vector3 terrainSize, Vector3 terrainPosition)
     {
-        float randomX = Random.Range(0f, terrainSize.x);
-        float randomZ = Random.Range(0f, terrainSize.z);
+        float randomX = Random.Range(terrainPosition.x, terrainPosition.x + terrainSize.x);
+        float randomZ = Random.Range(terrainPosition.z, terrainPosition.z + terrainSize.z);
 
-        Vector3 randomPos = new Vector3(randomX, 0f, randomZ);
-        randomPos.y = terrain.SampleHeight(randomPos);
+        Vector3 randomPos = new(randomX, 0f, randomZ);
+        randomPos.y = terrains[0].SampleHeight(randomPos);
+        randomPos.y = terrains[1].SampleHeight(randomPos);
 
         return randomPos;
     }
