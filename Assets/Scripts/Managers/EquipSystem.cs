@@ -147,7 +147,7 @@ public class EquipSystem : MonoBehaviour
         {
             "StoneAxe" => "StoneAxe_Model",
             "PickAxe" => "PickAxe_Model",
-            "TomatoSeed" => "Hand_Model",
+            "Tomato Seed" => "Hand_Model",
             "PumpkinSeed" => "Hand_Model",
             "WateringCan" => "WateringCan_Model",
             _ => null,

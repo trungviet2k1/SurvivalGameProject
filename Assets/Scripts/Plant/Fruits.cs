@@ -80,6 +80,19 @@ public class Fruits : MonoBehaviour
     IEnumerator PlantDead()
     {
         yield return new WaitForSeconds(4f);
-        DestroyImmediate(gameObject);
+
+        int numberOfSeeds = Random.Range(1, 3);
+
+        GameObject items = GetComponentInParent<EnvironmentManager>().allFruits;
+
+        for (int i = 0; i < numberOfSeeds; i++)
+        {
+            float yOffset = i * 0.2f;
+            GameObject stoneModel = Instantiate(Resources.Load("Tomato Seed_Model"),
+                transform.position + Vector3.up * yOffset, Quaternion.identity) as GameObject;
+            stoneModel.transform.parent = items.transform;
+        }
+
+        Destroy(transform.gameObject);
     }
 }

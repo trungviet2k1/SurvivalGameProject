@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5209623767206943945}
   - component: {fileID: 6433032270207174689}
   - component: {fileID: 3809221888915618406}
-  - component: {fileID: 6600347225380027462}
   m_Layer: 0
   m_Name: TomatoFruit
   m_TagString: Untagged
@@ -133,24 +132,6 @@ MonoBehaviour:
   - {fileID: 3952608073589606595}
   - {fileID: 3904158907378859921}
   fruitsPrefab: {fileID: 5406451783194973580, guid: 203b93a9bbd7ad6439cc1594ec0a35ec, type: 3}
---- !u!114 &6600347225380027462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2429747826585679042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe014fbe117b9b4b923742568a2c823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  possibleLoot:
-  - item: {fileID: 8208824387795922667, guid: 9b211b28bb9bbd3408d275ce5a33195f, type: 3}
-    amountMin: 1
-    amountMax: 1
-  finalLoot: []
-  wasLootCalculated: 0
 --- !u!1001 &4749554439088817889
 PrefabInstance:
   m_ObjectHideFlags: 0
