@@ -120,5 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: Big Stone
+  ItemName: Big Stone [Use Pick axe]
   detectionRange: 10

@@ -287,5 +287,26 @@ public class CraftingSystem : MonoBehaviour
                 }
             }
         }
+
+        //Pick Axe
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[8] != null && requiredItems[10] != null && requiredItems[11] != null)
+            {
+                Transform pickAxeReq1 = requiredItems[10].transform;
+                Transform pickAxeReq2 = requiredItems[11].transform;
+                pickAxeReq1.GetComponent<Text>().text = "6 Stones [" + stone_count + "/6]";
+                pickAxeReq2.GetComponent<Text>().text = "3 Sticks [" + stick_count + "/3]";
+
+                if (stone_count >= 6 && stick_count >= 3 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[8].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[8].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }

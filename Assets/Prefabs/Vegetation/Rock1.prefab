@@ -120,5 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInRange: 0
-  ItemName: "T\u1EA3ng \u0111\xE1 l\u1EDBn [D\xF9ng b\xFAa \u0111\u1EC3 \u0111\u1EADp]"
+  ItemName: Big Stone [Use Pick axe]
   detectionRange: 10

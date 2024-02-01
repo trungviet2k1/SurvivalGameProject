@@ -85,7 +85,7 @@ public class CraftingMenu : MonoBehaviour
                 craftingItems[1].craftObject.SetActive(true);
                 break;
             case 2:
-                menuResourcesCraft.SetActive(true);
+                menuToolCraft.SetActive(true);
                 craftingItems[2].craftObject.SetActive(true);
                 break;
             case 3:
@@ -93,7 +93,7 @@ public class CraftingMenu : MonoBehaviour
                 craftingItems[3].craftObject.SetActive(true);
                 break;
             case 4:
-                menuConstructionsCraft.SetActive(true);
+                menuResourcesCraft.SetActive(true);
                 craftingItems[4].craftObject.SetActive(true);
                 break;
             case 5:
@@ -109,8 +109,12 @@ public class CraftingMenu : MonoBehaviour
                 craftingItems[7].craftObject.SetActive(true);
                 break;
             case 8:
-                menuStoragesCraft.SetActive(true);
+                menuConstructionsCraft.SetActive(true);
                 craftingItems[8].craftObject.SetActive(true);
+                break;
+            case 9:
+                menuStoragesCraft.SetActive(true);
+                craftingItems[9].craftObject.SetActive(true);
                 break;
         }
     }

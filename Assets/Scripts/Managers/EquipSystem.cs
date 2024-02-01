@@ -146,6 +146,7 @@ public class EquipSystem : MonoBehaviour
         return selectedItemName switch
         {
             "StoneAxe" => "StoneAxe_Model",
+            "PickAxe" => "PickAxe_Model",
             "TomatoSeed" => "Hand_Model",
             "PumpkinSeed" => "Hand_Model",
             "WateringCan" => "WateringCan_Model",
