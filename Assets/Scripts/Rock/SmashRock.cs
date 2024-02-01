@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(MeshCollider))]
 public class SmashRock : MonoBehaviour
 {
     [Header("Range")]
@@ -70,13 +70,13 @@ public class SmashRock : MonoBehaviour
 
         for (int i = 0; i < numberOfStones; i++)
         {
-            float yOffset = i * 0.5f;
+            float yOffset = i * 0.2f;
             GameObject stoneModel = Instantiate(Resources.Load("Stone_Model"),
                 transform.position + Vector3.up * yOffset, Quaternion.identity) as GameObject;
             stoneModel.transform.parent = items.transform;
         }
 
-        Destroy(transform.parent.gameObject);
+        Destroy(transform.gameObject);
         canBeSmashed = false;
         SelectionManager.Instance.selectedRock = null;
         SelectionManager.Instance.chopHolder.SetActive(false);
