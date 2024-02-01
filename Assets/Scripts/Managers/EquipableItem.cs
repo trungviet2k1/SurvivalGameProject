@@ -51,6 +51,16 @@ public class EquipableItem : MonoBehaviour
         }
     }
 
+    void GetHitRock()
+    {
+        GameObject selectedRock = SelectionManager.Instance.selectedRock;
+
+        if (selectedRock != null)
+        {
+            selectedRock.GetComponent<SmashRock>().GetHit();
+        }
+    }
+
     IEnumerator SwingSoundDelay()
     {
         yield return new WaitForSeconds(0.3f);

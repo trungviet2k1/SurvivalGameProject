@@ -9,6 +9,7 @@ public class EnvironmentManager : MonoBehaviour
     public GameObject allBushs;
     public GameObject allFruits;
     public GameObject allAnimals;
+    public GameObject allRocks;
     public GameObject placeable;
 
     private void Awake()

@@ -11,6 +11,7 @@ public class SelectionManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject interaction_info_UI;
+    public GameObject chopHolder;
     public Image centerDotImage;
     public Image handIcon;
     Text interaction_Text;
@@ -29,10 +30,12 @@ public class SelectionManager : MonoBehaviour
 
     [Header("Tree")]
     public GameObject selectedTree;
-    public GameObject chopHolder;
 
     [Header("Bush")]
     public GameObject selectedBush;
+
+    [Header("Rock")]
+    public GameObject selectedRock;
 
     [HideInInspector] public bool onTarget;
     [HideInInspector] public bool handIsVisible;
@@ -70,15 +73,15 @@ public class SelectionManager : MonoBehaviour
             {
                 choppeableTree.canBeChopped = true;
                 selectedTree = choppeableTree.gameObject;
-                chopHolder.gameObject.SetActive(true);
+                chopHolder.SetActive(true);
             }
             else
             {
                 if (selectedTree != null)
                 {
-                    selectedTree.gameObject.GetComponent<ChoppableTree>().canBeChopped = false;
+                    selectedTree.GetComponent<ChoppableTree>().canBeChopped = false;
                     selectedTree = null;
-                    chopHolder.gameObject.SetActive(false);
+                    chopHolder.SetActive(false);
                 }
             }
 
@@ -88,15 +91,33 @@ public class SelectionManager : MonoBehaviour
             {
                 choppeableBush.canBeChopped = true;
                 selectedBush = choppeableBush.gameObject;
-                chopHolder.gameObject.SetActive(true);
+                chopHolder.SetActive(true);
             }
             else
             {
                 if (selectedBush != null)
                 {
-                    selectedBush.gameObject.GetComponent<ChoppableBush>().canBeChopped = false;
+                    selectedBush.GetComponent<ChoppableBush>().canBeChopped = false;
                     selectedBush = null;
-                    chopHolder.gameObject.SetActive(false);
+                    chopHolder.SetActive(false);
+                }
+            }
+
+            SmashRock smashRock = selectionTransform.GetComponent<SmashRock>();
+
+            if (smashRock && smashRock.playerInRange)
+            {
+                smashRock.canBeSmashed = true;
+                selectedRock = smashRock.gameObject;
+                chopHolder.SetActive(true);
+            }
+            else
+            {
+                if (selectedRock != null)
+                {
+                    selectedRock.GetComponent<SmashRock>().canBeSmashed = false;
+                    selectedRock = null;
+                    chopHolder.SetActive(false);
                 }
             }
 
