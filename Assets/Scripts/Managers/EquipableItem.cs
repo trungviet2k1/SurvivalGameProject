@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -31,7 +30,7 @@ public class EquipableItem : MonoBehaviour
         }
     }
 
-    void GetHit()
+    void GetHitTree()
     {
         GameObject selectedTree = SelectionManager.Instance.selectedTree;
 
@@ -39,6 +38,16 @@ public class EquipableItem : MonoBehaviour
         {
             SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
             selectedTree.GetComponent<ChoppableTree>().GetHit();
+        }
+    }
+
+    void GetHitBush()
+    {
+        GameObject selectedBush = SelectionManager.Instance.selectedBush;
+
+        if (selectedBush != null)
+        {
+            selectedBush.GetComponent<ChoppableBush>().GetHit();
         }
     }
 

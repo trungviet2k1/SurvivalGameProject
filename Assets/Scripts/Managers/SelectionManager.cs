@@ -31,6 +31,9 @@ public class SelectionManager : MonoBehaviour
     public GameObject selectedTree;
     public GameObject chopHolder;
 
+    [Header("Bush")]
+    public GameObject selectedBush;
+
     [HideInInspector] public bool onTarget;
     [HideInInspector] public bool handIsVisible;
 
@@ -75,6 +78,24 @@ public class SelectionManager : MonoBehaviour
                 {
                     selectedTree.gameObject.GetComponent<ChoppableTree>().canBeChopped = false;
                     selectedTree = null;
+                    chopHolder.gameObject.SetActive(false);
+                }
+            }
+
+            ChoppableBush choppeableBush = selectionTransform.GetComponent<ChoppableBush>();
+
+            if (choppeableBush && choppeableBush.playerInRange)
+            {
+                choppeableBush.canBeChopped = true;
+                selectedBush = choppeableBush.gameObject;
+                chopHolder.gameObject.SetActive(true);
+            }
+            else
+            {
+                if (selectedBush != null)
+                {
+                    selectedBush.gameObject.GetComponent<ChoppableBush>().canBeChopped = false;
+                    selectedBush = null;
                     chopHolder.gameObject.SetActive(false);
                 }
             }
