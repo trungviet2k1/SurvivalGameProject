@@ -103,7 +103,7 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-            SmashRock smashRock = selectionTransform.GetComponent<SmashRock>();
+            SmashOre smashRock = selectionTransform.GetComponent<SmashOre>();
 
             if (smashRock && smashRock.playerInRange)
             {
@@ -115,7 +115,7 @@ public class SelectionManager : MonoBehaviour
             {
                 if (selectedRock != null)
                 {
-                    selectedRock.GetComponent<SmashRock>().canBeSmashed = false;
+                    selectedRock.GetComponent<SmashOre>().canBeSmashed = false;
                     selectedRock = null;
                     chopHolder.SetActive(false);
                 }

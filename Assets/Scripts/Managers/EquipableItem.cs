@@ -57,7 +57,7 @@ public class EquipableItem : MonoBehaviour
 
         if (selectedRock != null)
         {
-            selectedRock.GetComponent<SmashRock>().GetHit();
+            selectedRock.GetComponent<SmashOre>().GetHit();
         }
     }
 
