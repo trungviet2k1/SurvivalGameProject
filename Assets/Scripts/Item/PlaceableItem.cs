@@ -1,14 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlaceableItem : MonoBehaviour
 {
+    [Header("Range")]
+    [SerializeField] float detectionRange = 10f;
+
+    [Header("Building")]
     [SerializeField] bool isGrounded;
     [SerializeField] bool isOverlappingItems;
     public bool isValidToBeBuild;
 
+    [Header("Collider")]
     [SerializeField] BoxCollider solidCollider;
     private Outlines outlines;
-
+    [HideInInspector] public bool playerInRange;
 
     void Start()
     {
@@ -17,23 +22,27 @@ public class PlaceableItem : MonoBehaviour
 
     void Update()
     {
-        if (isGrounded && isOverlappingItems == false)
+        float distance = Vector3.Distance(PlayerState.Instance.playerBody.transform.position, transform.position);
+
+        if (distance < detectionRange)
         {
-            isValidToBeBuild = true;
+            playerInRange = true;
         }
         else
         {
-            isValidToBeBuild = false;
+            playerInRange = false;
         }
 
-        var boxHeight = transform.lossyScale.y;
+        var boxHeight = solidCollider.size.y * transform.localScale.y;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit groundHit, boxHeight * 0.5f, LayerMask.GetMask("Ground")))
         {
             isGrounded = true;
+            isValidToBeBuild = !isOverlappingItems;
         }
         else
         {
             isGrounded = false;
+            isValidToBeBuild = false;
         }
     }
 
@@ -48,13 +57,15 @@ public class PlaceableItem : MonoBehaviour
                 transform.rotation = newRotation;
 
                 isGrounded = true;
+                isValidToBeBuild = !isOverlappingItems;
             }
         }
 
-        if (other.CompareTag("Plant") || other.CompareTag("PickAble")||
+        if (other.CompareTag("Plant") || other.CompareTag("PickAble") ||
             other.CompareTag("Animal") || other.CompareTag("Stone"))
         {
             isOverlappingItems = true;
+            isValidToBeBuild = false;
         }
     }
 
@@ -63,13 +74,14 @@ public class PlaceableItem : MonoBehaviour
         if (other.CompareTag("Ground") && PlacementSystem.Instance.inPlacementMode)
         {
             isGrounded = false;
+            isValidToBeBuild = false;
         }
 
-        if (other.CompareTag("Plant") || other.CompareTag("PickAble") ||
-            other.CompareTag("Animal") || other.CompareTag("Stone")
-            && PlacementSystem.Instance.inPlacementMode)
+        if ((other.CompareTag("Plant") || other.CompareTag("PickAble") ||
+            other.CompareTag("Animal") || other.CompareTag("Stone")) && PlacementSystem.Instance.inPlacementMode)
         {
             isOverlappingItems = false;
+            isValidToBeBuild = !isGrounded;
         }
     }
 
@@ -84,7 +96,7 @@ public class PlaceableItem : MonoBehaviour
             outlines.OutlineColor = Color.green;
         }
     }
-    
+
     public void SetInvalidColor()
     {
         if (outlines != null)

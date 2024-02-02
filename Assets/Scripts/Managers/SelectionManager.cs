@@ -22,6 +22,9 @@ public class SelectionManager : MonoBehaviour
     [Header("CampFire")]
     public GameObject selectedCampFire;
 
+    [Header("Furnace")]
+    public GameObject selectedFurnace;
+
     [Header("Soil")]
     public GameObject selectedSoil;
     
@@ -191,6 +194,28 @@ public class SelectionManager : MonoBehaviour
                 if (selectedCampFire != null)
                 {
                     selectedCampFire = null;
+                }
+            }
+
+            Furnace furnace = selectionTransform.GetComponent<Furnace>();
+
+            if (furnace && furnace.playerInRange && PlacementSystem.Instance.inPlacementMode == false)
+            {
+                interaction_Text.text = "[E] Interact";
+                interaction_info_UI.SetActive(true);
+
+                selectedFurnace = furnace.gameObject;
+
+                if (Input.GetKey(KeyCode.E) && furnace.isFurnacing == false)
+                {
+                    furnace.OpenUI();
+                }
+            }
+            else
+            {
+                if (selectedFurnace != null)
+                {
+                    selectedFurnace = null;
                 }
             }
 

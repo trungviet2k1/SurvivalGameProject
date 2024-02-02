@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14dfa45dd498574f89ca37cdb044953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisName: Raw iron
+  thisName: Raw Iron
   thisDescription: Raw iron pellets can be used to roast iron ingots
   thisFunctionality: Manufacturing iron ingots
   isConsumable: 0

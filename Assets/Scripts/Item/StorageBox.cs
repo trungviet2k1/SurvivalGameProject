@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class StorageBox : MonoBehaviour
 {
-    public bool playerInRange;
-
     [Header("List of Storage Box")]
     public List<string> items;
+
+    [HideInInspector] public bool playerInRange;
 
     public enum BoxType
     {
