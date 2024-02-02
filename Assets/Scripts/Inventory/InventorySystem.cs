@@ -24,7 +24,6 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
     public Text pickupName;
     public Image pickupImage;
     public GameObject inventoryFullAlert;
-    public Button closeInventoryAlert;
 
     [HideInInspector] public bool isOpen;
     [HideInInspector] public bool isAlertFullOpen;

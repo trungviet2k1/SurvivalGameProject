@@ -113,8 +113,12 @@ public class CraftingMenu : MonoBehaviour
                 craftingItems[8].craftObject.SetActive(true);
                 break;
             case 9:
-                menuStoragesCraft.SetActive(true);
+                menuConstructionsCraft.SetActive(true);
                 craftingItems[9].craftObject.SetActive(true);
+                break;
+            case 10:
+                menuStoragesCraft.SetActive(true);
+                craftingItems[10].craftObject.SetActive(true);
                 break;
         }
     }

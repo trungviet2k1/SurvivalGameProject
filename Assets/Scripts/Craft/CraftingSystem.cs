@@ -308,5 +308,24 @@ public class CraftingSystem : MonoBehaviour
                 }
             }
         }
+
+        //Furnace
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[9] != null && requiredItems[12] != null)
+            {
+                Transform furnaceReq1 = requiredItems[12].transform;
+                furnaceReq1.GetComponent<Text>().text = "8 Stones [" + stone_count + "/8]";
+
+                if (stone_count >= 8 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[9].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[9].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }
