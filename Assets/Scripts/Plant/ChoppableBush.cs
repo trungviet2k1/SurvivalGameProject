@@ -64,14 +64,15 @@ public class ChoppableBush : MonoBehaviour
 
     void TreeIsDead()
     {
-        int numberOfSticks = Random.Range(1, 4);
+        int numberOfSticks = Random.Range(2, 4);
 
-        GameObject items = GetComponentInParent<EnvironmentManager>().allBushs;
+        GameObject items = GetComponentInParent<EnvironmentManager>().allItems;
 
         for (int i = 0; i < numberOfSticks; i++)
         {
             GameObject stickModel = Instantiate(Resources.Load("Stick_Model"), transform.position + Vector3.up, Quaternion.identity) as GameObject;
             stickModel.transform.parent = items.transform;
+            stickModel.name = "Stick_Model(Clone)" + (i == 0 ? "" : "(" + i + ")");
         }
 
         Destroy(transform.parent.gameObject);

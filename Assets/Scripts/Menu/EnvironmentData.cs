@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnvironmentData
 {
     public List<string> pickupItem;
+    public List<string> allItems;
     public List<TreeData> treeData;
     public List<string> bushData;
     public List<string> fruits;
@@ -12,10 +13,11 @@ public class EnvironmentData
     public List<StorageData> storage;
 
 
-    public EnvironmentData(List<string> _pickupItem, List<TreeData> _treeData, List<string> _bushData,
+    public EnvironmentData(List<string> _pickupItem, List<string> _allItems, List<TreeData> _treeData, List<string> _bushData,
         /*List<TreeData> _treeData,*/ List<string> _fruits, List<string> _animals, List<StorageData> _storage)
     {
         pickupItem = _pickupItem;
+        allItems = _allItems;
         treeData = _treeData;
         bushData = _bushData;
         fruits = _fruits;

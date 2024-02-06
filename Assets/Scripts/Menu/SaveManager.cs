@@ -65,6 +65,12 @@ public class SaveManager : MonoBehaviour
     {
         List<string> itemsPickedup = InventorySystem.Instance.itemPickedup;
 
+        List<string> allItemsInEnvironment = new();
+        foreach (Transform items in EnvironmentManager.Instance.allItems.transform)
+        {
+            allItemsInEnvironment.Add(items.gameObject.name);
+        }
+
         Dictionary<string, List<TreeData>> treeDataDict = new();
 
         foreach (Transform tree in EnvironmentManager.Instance.allTrees.transform)
@@ -103,10 +109,7 @@ public class SaveManager : MonoBehaviour
         List<string> allBushs = new();
         foreach (Transform bushType in EnvironmentManager.Instance.allBushs.transform)
         {
-            foreach (Transform bush in bushType.transform)
-            {
-                allBushs.Add(bush.gameObject.name);
-            }
+            allBushs.Add(bushType.gameObject.name);
         }
 
         List<string> allFruits = new();
@@ -145,7 +148,7 @@ public class SaveManager : MonoBehaviour
 
         List<TreeData> treeToSave = treeDataDict.Values.SelectMany(x => x).ToList();
 
-        return new EnvironmentData(itemsPickedup, treeToSave, allBushs, allFruits, allAnimals, allStorage);
+        return new EnvironmentData(itemsPickedup, allItemsInEnvironment, treeToSave, allBushs, allFruits, allAnimals, allStorage);
     }
 
     private PlayerData GetPlayerData()
@@ -233,14 +236,11 @@ public class SaveManager : MonoBehaviour
     private void SetEnvironmentData(EnvironmentData environmentData)
     {
         // ======= Pick up items ======= //
-        foreach (Transform itemType in EnvironmentManager.Instance.allItems.transform)
+        foreach (Transform items in EnvironmentManager.Instance.allItems.transform)
         {
-            foreach (Transform item in itemType.transform)
+            if (environmentData.pickupItem.Contains(items.name))
             {
-                if (environmentData.pickupItem.Contains(item.name))
-                {
-                    Destroy(item.gameObject);
-                }
+                Destroy(items.gameObject);
             }
         }
 
@@ -261,6 +261,15 @@ public class SaveManager : MonoBehaviour
                 Quaternion.Euler(tree.rotation.x, tree.rotation.y, tree.rotation.z));
 
             treePrefab.transform.SetParent(EnvironmentManager.Instance.allTrees.transform);
+        }
+
+        // ======= Bushs ======= //
+        foreach (Transform bushs in EnvironmentManager.Instance.allBushs.transform)
+        {
+            if (!environmentData.bushData.Contains(bushs.gameObject.name))
+            {
+                Destroy(bushs.gameObject);
+            }
         }
 
         // ======= Fruits ======= //
