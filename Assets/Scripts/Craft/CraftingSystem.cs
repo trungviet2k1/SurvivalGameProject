@@ -104,6 +104,7 @@ public class CraftingSystem : MonoBehaviour
     {
         int stone_count = 0;
         int stick_count = 0;
+        int ingotIron_count = 0;
         int log_count = 0;
         int treatedWood_count = 0;
         int plank_cound = 0;
@@ -119,6 +120,9 @@ public class CraftingSystem : MonoBehaviour
                     break;
                 case "Stick":
                     stick_count += 1;
+                    break;
+                case "Ingot Iron":
+                    ingotIron_count += 1;
                     break;
                 case "Log":
                     log_count += 1;
@@ -324,6 +328,27 @@ public class CraftingSystem : MonoBehaviour
                 else
                 {
                     craftedButton[9].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        //IronAxe
+        if (craftedButton.Length > 0 && requiredItems.Length > 0)
+        {
+            if (craftedButton[10] != null && requiredItems[13] != null && requiredItems[14] != null)
+            {
+                Transform ironAxeReq1 = requiredItems[13].transform;
+                Transform ironAxeReq2 = requiredItems[14].transform;
+                ironAxeReq1.GetComponent<Text>().text = "3 Ingot Iron [" + ingotIron_count + "/3]";
+                ironAxeReq2.GetComponent<Text>().text = "6 Sticks [" + stick_count + "/6]";
+
+                if (ingotIron_count >= 3 && stick_count >= 6 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                {
+                    craftedButton[10].gameObject.SetActive(true);
+                }
+                else
+                {
+                    craftedButton[10].gameObject.SetActive(false);
                 }
             }
         }
