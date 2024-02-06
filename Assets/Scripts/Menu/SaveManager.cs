@@ -100,6 +100,15 @@ public class SaveManager : MonoBehaviour
             treeDataDict[treeName].Add(td);
         }
 
+        List<string> allBushs = new();
+        foreach (Transform bushType in EnvironmentManager.Instance.allBushs.transform)
+        {
+            foreach (Transform bush in bushType.transform)
+            {
+                allBushs.Add(bush.gameObject.name);
+            }
+        }
+
         List<string> allFruits = new();
         foreach (Transform fruits in EnvironmentManager.Instance.allFruits.transform)
         {
@@ -136,7 +145,7 @@ public class SaveManager : MonoBehaviour
 
         List<TreeData> treeToSave = treeDataDict.Values.SelectMany(x => x).ToList();
 
-        return new EnvironmentData(itemsPickedup, treeToSave, allFruits, allAnimals, allStorage);
+        return new EnvironmentData(itemsPickedup, treeToSave, allBushs, allFruits, allAnimals, allStorage);
     }
 
     private PlayerData GetPlayerData()

@@ -278,10 +278,10 @@ public class CraftingSystem : MonoBehaviour
             {
                 Transform campfire1Req = requiredItems[8].transform;
                 Transform campfire2Req = requiredItems[9].transform;
-                campfire1Req.GetComponent<Text>().text = "1 Stone [" + stone_count + "/1]";
-                campfire2Req.GetComponent<Text>().text = "1 Stick [" + stick_count + "/1]";
+                campfire1Req.GetComponent<Text>().text = "8 Stone [" + stone_count + "/8]";
+                campfire2Req.GetComponent<Text>().text = "8 Stick [" + stick_count + "/8]";
 
-                if (stone_count >= 1 && stick_count >= 1 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                if (stone_count >= 8 && stick_count >= 8 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
                     craftedButton[7].gameObject.SetActive(true);
                 }
@@ -340,9 +340,9 @@ public class CraftingSystem : MonoBehaviour
                 Transform ironAxeReq1 = requiredItems[13].transform;
                 Transform ironAxeReq2 = requiredItems[14].transform;
                 ironAxeReq1.GetComponent<Text>().text = "3 Ingot Iron [" + ingotIron_count + "/3]";
-                ironAxeReq2.GetComponent<Text>().text = "6 Sticks [" + stick_count + "/6]";
+                ironAxeReq2.GetComponent<Text>().text = "3 Sticks [" + stick_count + "/3]";
 
-                if (ingotIron_count >= 3 && stick_count >= 6 && InventorySystem.Instance.CheckSlotsAvailable(1))
+                if (ingotIron_count >= 3 && stick_count >= 3 && InventorySystem.Instance.CheckSlotsAvailable(1))
                 {
                     craftedButton[10].gameObject.SetActive(true);
                 }
