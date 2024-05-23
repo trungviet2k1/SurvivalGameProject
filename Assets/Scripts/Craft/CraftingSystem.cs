@@ -50,8 +50,11 @@ public class CraftingSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B) && !isOpen && !ConstructionManager.Instance.inConstrucionMode)
         {
             craftingScreenUI.SetActive(true);
+            craftingScreenUI.GetComponentInParent<Canvas>().sortingOrder = MenuManager.Instance.SetAsFront();
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
             SelectionManager.Instance.DisableSelection();
             SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
             isOpen = true;

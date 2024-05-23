@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -84,8 +85,11 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
     public void OpenUI()
     {
         inventoryScreenUI.SetActive(true);
+        inventoryScreenUI.GetComponentInParent<Canvas>().sortingOrder = MenuManager.Instance.SetAsFront();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
         SelectionManager.Instance.DisableSelection();
         SelectionManager.Instance.GetComponent<SelectionManager>().enabled = false;
         isOpen = true;
@@ -123,6 +127,8 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeedItems();
+
+        QuestManager.Instance.RefreshTrackerList();
     }
 
     void TriggerPickUpPopUp(string itemName, Sprite itemSprite)
@@ -206,6 +212,7 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
 
         ReCalculateList();
         CraftingSystem.Instance.RefreshNeedItems();
+        QuestManager.Instance.RefreshTrackerList();
     }
 
     public void ReCalculateList()
@@ -222,6 +229,21 @@ public class InventorySystem : MonoBehaviour, IPointerClickHandler
                 itemList.Add(result);
             }
         }
+    }
+
+    public int CheckItemAmount(string name)
+    {
+        int itemCounter = 0;
+
+        foreach (string item in itemList)
+        {
+            if (item == name)
+            {
+                itemCounter++;
+            }
+        }
+
+        return itemCounter;
     }
 
     public void CloseInventoryFullAlert()

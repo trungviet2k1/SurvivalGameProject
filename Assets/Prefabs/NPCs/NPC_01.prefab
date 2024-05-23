@@ -17580,13 +17580,19 @@ MonoBehaviour:
   NPCName: Luna
   detectionRange: 10
   quests:
-  - accepted: 0
+  - questName: Collect rabbit hides
+    questGiver: Luna
+    questDetail: Help Luna collect all 7 rabbit skins to bring back to her father
+    accepted: 0
     declined: 0
     initialDialogueCompleted: 0
     isCompleted: 0
     hasNoRequirements: 0
     info: {fileID: 11400000, guid: b779147f78e6c214389b3d7c206722f8, type: 2}
   currentActiveQuest:
+    questName: 
+    questGiver: 
+    questDetail: 
     accepted: 0
     declined: 0
     initialDialogueCompleted: 0

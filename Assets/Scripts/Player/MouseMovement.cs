@@ -15,7 +15,8 @@ public class MouseMovement : MonoBehaviour
     {
         if (InventorySystem.Instance.isOpen == false && InventorySystem.Instance.isAlertFullOpen == false &&
             CraftingSystem.Instance.isOpen == false && MenuManager.Instance.isMenuOpen == false &&
-            !StorageSystem.Instance.storageUIOpen && !DialogueSystem.Instance.dialogueUIActive)
+            !StorageSystem.Instance.storageUIOpen && !DialogueSystem.Instance.dialogueUIActive &&
+            !QuestManager.Instance.isQuestMenuOpen)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitive * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitive * Time.deltaTime;
