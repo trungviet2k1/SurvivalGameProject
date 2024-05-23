@@ -40,6 +40,9 @@ public class SelectionManager : MonoBehaviour
     [Header("Rock")]
     public GameObject selectedRock;
 
+    [Header("NPC")]
+    public GameObject selectedNPC;
+
     [HideInInspector] public bool onTarget;
     [HideInInspector] public bool handIsVisible;
 
@@ -70,12 +73,12 @@ public class SelectionManager : MonoBehaviour
         {
             var selectionTransform = hit.transform;
 
-            ChoppableTree choppeableTree = selectionTransform.GetComponent<ChoppableTree>();
+            ChoppableTree choppableTree = selectionTransform.GetComponent<ChoppableTree>();
 
-            if (choppeableTree && choppeableTree.playerInRange)
+            if (choppableTree && choppableTree.playerInRange)
             {
-                choppeableTree.canBeChopped = true;
-                selectedTree = choppeableTree.gameObject;
+                choppableTree.canBeChopped = true;
+                selectedTree = choppableTree.gameObject;
                 chopHolder.SetActive(true);
             }
             else
@@ -88,12 +91,12 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-            ChoppableBush choppeableBush = selectionTransform.GetComponent<ChoppableBush>();
+            ChoppableBush choppableBush = selectionTransform.GetComponent<ChoppableBush>();
 
-            if (choppeableBush && choppeableBush.playerInRange)
+            if (choppableBush && choppableBush.playerInRange)
             {
-                choppeableBush.canBeChopped = true;
-                selectedBush = choppeableBush.gameObject;
+                choppableBush.canBeChopped = true;
+                selectedBush = choppableBush.gameObject;
                 chopHolder.SetActive(true);
             }
             else
@@ -124,13 +127,13 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-            InteractableObject interacable = selectionTransform.GetComponent<InteractableObject>();
+            InteractableObject interactable = selectionTransform.GetComponent<InteractableObject>();
 
-            if (interacable && interacable.playerInRange)
+            if (interactable && interactable.playerInRange)
             {
                 onTarget = true;
-                selectedObject = interacable.gameObject;
-                interaction_Text.text = interacable.GetItemName();
+                selectedObject = interactable.gameObject;
+                interaction_Text.text = interactable.GetItemName();
                 interaction_info_UI.SetActive(true);
 
                 centerDotImage.gameObject.SetActive(false);
@@ -139,7 +142,7 @@ public class SelectionManager : MonoBehaviour
                 handIsVisible = true;
 
 
-                if (interacable.CompareTag("PickAble"))
+                if (interactable.CompareTag("PickAble"))
                 {
                     centerDotImage.gameObject.SetActive(false);
                     handIcon.gameObject.SetActive(true);
@@ -333,7 +336,7 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-            if (!interacable && !animal)
+            if (!interactable && !animal)
             {
                 onTarget = false;
                 handIsVisible = false;
@@ -341,7 +344,36 @@ public class SelectionManager : MonoBehaviour
                 handIcon.gameObject.SetActive(false);
             }
 
-            if (!interacable && !animal && !choppeableTree && !storageBox && !campFire && !soil && !fruits)
+            if (!interactable && !animal && !choppableTree && !storageBox && !campFire && !soil && !fruits)
+            {
+                interaction_Text.text = "";
+                interaction_info_UI.SetActive(false);
+            }
+
+            NPC npc = selectionTransform.GetComponent<NPC>();
+
+            if (npc && npc.playerInRange)
+            {
+                interaction_Text.text = "[C] Chat with " + npc.NPCName;
+                interaction_info_UI.SetActive(true);
+
+                if (Input.GetKey(KeyCode.C) && npc.isInteractionWithPlayer == false)
+                {
+                    npc.StartConversation();
+                }
+
+                if (Input.GetKey(KeyCode.BackQuote) && npc.isInteractionWithPlayer == true)
+                {
+                    npc.EndConversation();
+                }
+
+                if (DialogueSystem.Instance.dialogueUIActive)
+                {
+                    interaction_info_UI.SetActive(false);
+                    centerDotImage.gameObject.SetActive(false);
+                }
+            }
+            else
             {
                 interaction_Text.text = "";
                 interaction_info_UI.SetActive(false);

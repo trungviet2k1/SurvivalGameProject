@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         if (MenuManager.Instance.isMenuOpen == false && StorageSystem.Instance.storageUIOpen == false
-            && CampFireUIManager.Instance.isUIOpen == false)
+            && CampFireUIManager.Instance.isUIOpen == false && DialogueSystem.Instance.dialogueUIActive == false)
         {
             Movement();
         }
