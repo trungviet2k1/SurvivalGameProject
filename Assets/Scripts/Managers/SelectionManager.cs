@@ -362,11 +362,6 @@ public class SelectionManager : MonoBehaviour
                     npc.StartConversation();
                 }
 
-                if (Input.GetKey(KeyCode.BackQuote) && npc.isInteractionWithPlayer == true)
-                {
-                    npc.EndConversation();
-                }
-
                 if (DialogueSystem.Instance.dialogueUIActive)
                 {
                     interaction_info_UI.SetActive(false);
