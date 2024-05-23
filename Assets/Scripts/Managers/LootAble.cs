@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class LootAble : MonoBehaviour
@@ -7,6 +7,33 @@ public class LootAble : MonoBehaviour
     public List<LootReceived> finalLoot;
 
     public bool wasLootCalculated;
+
+    void Start()
+    {
+        CalculateLoot();
+    }
+
+    public void CalculateLoot()
+    {
+        if (wasLootCalculated) return;
+
+        finalLoot = new List<LootReceived>();
+
+        foreach (var loot in possibleLoot)
+        {
+            int amount = Random.Range(loot.amountMin, loot.amountMax + 1);
+
+            if (amount > 0)
+            {
+                LootReceived receivedLoot = new LootReceived();
+                receivedLoot.item = loot.item;
+                receivedLoot.amount = amount;
+                finalLoot.Add(receivedLoot);
+            }
+        }
+
+        wasLootCalculated = true;
+    }
 }
 
 [System.Serializable]

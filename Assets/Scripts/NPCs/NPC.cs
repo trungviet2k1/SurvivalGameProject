@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -89,7 +89,7 @@ public class NPC : MonoBehaviour
                     SubmitRequiredItem();
                     DialogueSystem.Instance.OpenDialogueUI();
                     npcDialogueText.text = currentActiveQuest.info.comebackCompleted;
-                    TakeReward();
+                    ReceiveRewardAndCompleteQuest();
                 }
                 else
                 {
@@ -217,7 +217,7 @@ public class NPC : MonoBehaviour
         if (currentActiveQuest.hasNoRequirements)
         {
             npcDialogueText.text = currentActiveQuest.info.comebackCompleted;
-            TakeReward();
+            ReceiveRewardAndCompleteQuest();
             optButton_2.gameObject.SetActive(false);
         }
         else
@@ -231,11 +231,9 @@ public class NPC : MonoBehaviour
     private void ReceiveRewardAndCompleteQuest()
     {
         QuestManager.Instance.MakeQuestCompleted(currentActiveQuest);
-
         currentActiveQuest.isCompleted = true;
-
         var coinsReceived = currentActiveQuest.info.coinReward;
-        Debug.Log("You received " + coinsReceived + " gold coins");
+        CurrencyManager.Instance.AddGold(coinsReceived);
 
         if (currentActiveQuest.info.rewardItem1 != "")
         {
@@ -262,7 +260,7 @@ public class NPC : MonoBehaviour
             DialogueSystem.Instance.CloseDialogueUI();
             animator.SetBool("Interaction", false);
             isInteractionWithPlayer = false;
-            Debug.Log("No more question!");
+            Debug.Log("No more questions!");
         }
     }
 
