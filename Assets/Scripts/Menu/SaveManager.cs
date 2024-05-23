@@ -170,7 +170,9 @@ public class SaveManager : MonoBehaviour
         string[] inventory = InventorySystem.Instance.itemList.ToArray();
         string[] quickSlot = GetQuickSlotContent();
 
-        return new PlayerData(playerStarts, playerPosAndRot, inventory, quickSlot);
+        int currency = CurrencyManager.Instance.GetCurrentGold();
+
+        return new PlayerData(playerStarts, playerPosAndRot, inventory, quickSlot, currency);
     }
 
     private string[] GetQuickSlotContent()
@@ -328,17 +330,17 @@ public class SaveManager : MonoBehaviour
 
             //Setting Player Position
             Vector3 loadedPosition;
-            loadedPosition.x = playerData.playerPositionAndRotaion[0];
-            loadedPosition.y = playerData.playerPositionAndRotaion[1];
-            loadedPosition.z = playerData.playerPositionAndRotaion[2];
+            loadedPosition.x = playerData.playerPositionAndRotation[0];
+            loadedPosition.y = playerData.playerPositionAndRotation[1];
+            loadedPosition.z = playerData.playerPositionAndRotation[2];
 
             PlayerState.Instance.playerBody.transform.position = loadedPosition;
 
             //Setting Player Rotaion
             Vector3 loadedRotation;
-            loadedRotation.x = playerData.playerPositionAndRotaion[3];
-            loadedRotation.y = playerData.playerPositionAndRotaion[4];
-            loadedRotation.z = playerData.playerPositionAndRotaion[5];
+            loadedRotation.x = playerData.playerPositionAndRotation[3];
+            loadedRotation.y = playerData.playerPositionAndRotation[4];
+            loadedRotation.z = playerData.playerPositionAndRotation[5];
 
             PlayerState.Instance.playerBody.transform.rotation = Quaternion.Euler(loadedRotation);
 
@@ -356,6 +358,9 @@ public class SaveManager : MonoBehaviour
                 var itemToAdd = Instantiate(Resources.Load<GameObject>(item));
                 itemToAdd.transform.SetParent(availableSlot.transform, false);
             }
+
+            // Setting the currency value
+            CurrencyManager.Instance.AddGold(playerData.currency - CurrencyManager.Instance.GetCurrentGold());
 
             isLoading = false;
         }

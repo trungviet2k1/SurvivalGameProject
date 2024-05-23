@@ -354,7 +354,8 @@ public class SelectionManager : MonoBehaviour
 
             if (npc && npc.playerInRange)
             {
-                interaction_Text.text = "[C] Chat with " + npc.NPCName;
+                interaction_Text.text = "[C] Chat with " + npc.NPCName + "\n" +
+                    "[G] Store";
                 interaction_info_UI.SetActive(true);
 
                 if (Input.GetKey(KeyCode.C) && npc.isInteractionWithPlayer == false)
